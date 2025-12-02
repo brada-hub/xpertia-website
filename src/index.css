@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colores personalizados */
+--color-primary: #6366f1; /* ⬅️ Modifica aquí el color principal */
+--color-primary-dark: #4f46e5; /* ⬅️ Modifica aquí su variante oscura */
+--color-secondary: #ec4899; /* ⬅️ Modifica aquí el color secundario */
+--color-accent: #f59e0b; /* ⬅️ Modifica aquí el color de acento */
+  
+  /* Espaciados personalizados */
+--spacing-section: 5rem;
+}
+
+/* Estilos base */
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+}
+
+/* Componentes personalizados */
+@layer components {
+  /* Botones */
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary hover:bg-pink-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300;
+  }
+  
+  /* Cards */
+  .card {
+    @apply bg-white rounded-xl shadow-lg p-6 transition-transform duration-300 hover:scale-105;
+  }
+  
+  /* Contenedores de sección */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+  
+  /* Títulos de sección */
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4;
+  }
+  
+  .section-subtitle {
+    @apply text-lg md:text-xl text-gray-600 text-center mb-12;
+  }
+}
+
+/* Utilidades personalizadas */
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+  
+  .bg-gradient-primary {
+    @apply bg-gradient-to-r from-primary to-primary-dark;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+}
+
+/* Animaciones personalizadas */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary-dark;
+}
