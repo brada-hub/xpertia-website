@@ -42,18 +42,23 @@ const Navbar = () => {
 
   const handleLinkClick = (e, href) => {
     e.preventDefault();
-    setIsMobileMenuOpen(false);
     
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     
-    if (element) {
-      const offsetTop = element.offsetTop - 80;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-    }
+    // Cerrar menú móvil primero
+    setIsMobileMenuOpen(false);
+    
+    // Delay para permitir que el menú cierre antes de hacer scroll
+    setTimeout(() => {
+      if (element) {
+        const offsetTop = element.offsetTop - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    }, 150);
   };
 
   return (

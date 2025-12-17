@@ -68,7 +68,7 @@ const Proceso = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-4 px-2">
             Metodología: Desarrollo Ágil y Transparente
           </h2>
           <p className="text-lg text-white/90 max-w-3xl mx-auto">
@@ -77,7 +77,7 @@ const Proceso = () => {
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-5 gap-6"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-6"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -89,7 +89,7 @@ const Proceso = () => {
               variants={itemVariants}
             >
               <motion.div
-                className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-accent to-blue-500 rounded-full flex items-center justify-center text-3xl font-bold text-white shadow-glow"
+                className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-4 md:mb-6 bg-gradient-to-br from-accent to-blue-500 rounded-full flex items-center justify-center text-xl sm:text-2xl md:text-3xl font-bold text-white shadow-glow"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 animate={{
                   boxShadow: [
@@ -108,10 +108,10 @@ const Proceso = () => {
               >
                 {step.number}
               </motion.div>
-              <h4 className="text-xl font-heading font-bold text-white mb-3">
+              <h4 className="text-base sm:text-lg md:text-xl font-heading font-bold text-white mb-2 md:mb-3">
                 {step.title}
               </h4>
-              <p className="text-white/85 text-sm leading-relaxed">
+              <p className="text-white/85 text-xs sm:text-sm leading-relaxed">
                 {step.description}
               </p>
             </motion.div>

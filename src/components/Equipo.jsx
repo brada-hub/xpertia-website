@@ -74,25 +74,25 @@ const Equipo = () => {
   };
 
   return (
-    <section id="equipo" className="py-24 bg-gray-50" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="equipo" className="py-16 md:py-24 bg-primary relative overflow-hidden" ref={ref}>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16 px-2"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-4">
-            La Experiencia Detrás de Xpertia
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-3 md:mb-4">
+            La Experiencia Detrás de <span className="text-gradient">Xpertia</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-4xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-4xl mx-auto">
             En Xpertia, la experiencia es la base de cada solución. Nuestro equipo multidisciplinario combina la
             visión estratégica con la maestría técnica para impulsar su transformación digital.
           </p>
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -100,23 +100,23 @@ const Equipo = () => {
           {team.map((member, index) => (
             <motion.div
               key={index}
-              className="bg-white rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all group"
+              className="glass-card p-6 md:p-8 group hover:border-accent/40"
               variants={itemVariants}
               whileHover={{ y: -8 }}
             >
               <motion.div
-                className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-2xl font-bold text-white shadow-lg"
+                className="w-14 h-14 md:w-20 md:h-20 mx-auto mb-4 md:mb-6 bg-gradient-to-br from-secondary to-accent rounded-full flex items-center justify-center text-lg md:text-2xl font-bold text-white shadow-glow"
                 whileHover={{ scale: 1.1, rotate: 5 }}
               >
                 {member.initials}
               </motion.div>
-              <h4 className="text-center font-heading font-bold text-primary mb-2 text-lg">
+              <h4 className="text-center font-heading font-bold text-white mb-1 md:mb-2 text-base md:text-lg group-hover:text-accent transition-colors">
                 {member.name}
               </h4>
-              <p className="text-center text-accent font-semibold mb-4 text-sm">
+              <p className="text-center text-accent/80 font-semibold mb-3 md:mb-4 text-xs md:text-sm">
                 {member.role}
               </p>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-gray-400 text-xs md:text-sm leading-relaxed text-center">
                 {member.description}
               </p>
             </motion.div>

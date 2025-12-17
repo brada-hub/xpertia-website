@@ -11,7 +11,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-accent to-blue-500 rounded-lg flex items-center justify-center text-white font-heading font-bold text-xl">
+            <div className="w-10 h-10 bg-gradient-to-br from-accent to-secondary rounded-lg flex items-center justify-center text-white font-heading font-bold text-xl shadow-glow">
               X
             </div>
             <span className="text-2xl font-bold text-white">XPERTIA</span>

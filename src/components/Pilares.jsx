@@ -62,24 +62,24 @@ const Pilares = () => {
   };
 
   return (
-    <section id="pilares" className="py-24 bg-primary relative overflow-hidden" ref={ref}>
+    <section id="pilares" className="py-16 md:py-24 bg-primary relative overflow-hidden" ref={ref}>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20 px-2"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-white">
             Nuestros <span className="text-gradient">Pilares</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
             Fundamentos sólidos que garantizan el éxito de cada proyecto tecnológico.
           </p>
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-3 gap-8"
+          className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -87,26 +87,27 @@ const Pilares = () => {
           {pilares.map((pilar, index) => (
             <motion.div
               key={index}
-              className="bg-primary-light border border-white/5 rounded-2xl p-8 hover:border-accent/30 transition-all group relative overflow-hidden"
+              className="glass-card p-6 md:p-8 group relative overflow-hidden"
               variants={itemVariants}
               whileHover={{ y: -10 }}
             >
               <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
-              <div className="w-16 h-16 bg-gradient-to-br from-accent to-purple-600 rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <div className="w-8 h-8 text-white">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-accent to-secondary rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-8 shadow-glow group-hover:scale-110 transition-transform duration-300">
+                <div className="w-6 h-6 md:w-8 md:h-8 text-white">
                   {pilar.icon}
                 </div>
               </div>
               
-              <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-accent transition-colors">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 md:mb-4 group-hover:text-accent transition-colors">
                 {pilar.title}
               </h3>
               
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-gray-300 leading-relaxed text-sm md:text-base">
                 {pilar.description}
               </p>
             </motion.div>
+
           ))}
         </motion.div>
       </div>

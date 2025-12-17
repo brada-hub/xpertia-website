@@ -101,7 +101,7 @@ const Contacto = () => {
       <div className="absolute top-0 left-0 w-full h-full bg-pattern opacity-20 pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
           
           {/* Contact Info */}
           <motion.div
@@ -110,11 +110,11 @@ const Contacto = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-white leading-tight">
               Hablemos de tu <br />
               <span className="text-gradient">Próximo Proyecto</span>
             </h2>
-            <p className="text-xl text-gray-400 mb-12 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 md:mb-12 leading-relaxed">
               Estamos listos para escuchar tus ideas y convertirlas en realidad. 
               Contáctanos para una consultoría inicial gratuita.
             </p>
@@ -170,7 +170,7 @@ const Contacto = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-primary-light p-8 md:p-10 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden"
+            className="bg-primary-light p-6 sm:p-8 md:p-10 rounded-2xl md:rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden"
           >
             {/* Form Glow Effect */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2" />
@@ -191,7 +191,7 @@ const Contacto = () => {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-400 ml-1">Nombre *</label>
                   <input
