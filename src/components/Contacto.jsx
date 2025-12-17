@@ -11,19 +11,88 @@ const Contacto = () => {
     service: 'General',
     message: '',
   });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'El nombre es obligatorio';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'El email es obligatorio';
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = 'Por favor ingresa un email válido';
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'El mensaje es obligatorio';
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'El mensaje debe tener al menos 10 caracteres';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Aquí puedes agregar la lógica para enviar el formulario
-    alert('¡Gracias por contactarnos! Te responderemos pronto.');
+    
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    // Simular envío (aquí integrarías tu backend o servicio de email)
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      console.log('Formulario enviado:', formData);
+      
+      setSubmitMessage('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
+      setFormData({
+        name: '',
+        email: '',
+        service: 'General',
+        message: '',
+      });
+      setErrors({});
+
+      // Limpiar mensaje después de 5 segundos
+      setTimeout(() => {
+        setSubmitMessage('');
+      }, 5000);
+      
+    } catch (error) {
+      setSubmitMessage('Hubo un error al enviar el mensaje. Por favor intenta de nuevo.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+    
+    // Limpiar error del campo al escribir
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: '',
+      }));
+    }
   };
 
   return (
@@ -108,31 +177,64 @@ const Contacto = () => {
 
             <h3 className="text-2xl font-bold text-white mb-8 relative z-10">Envíanos un mensaje</h3>
 
+            {/* Success/Error Message */}
+            {submitMessage && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`mb-6 p-4 rounded-xl ${
+                  submitMessage.includes('error') ? 'bg-red-500/20 border border-red-500/50' : 'bg-green-500/20 border border-green-500/50'
+                }`}
+              >
+                <p className="text-white text-sm">{submitMessage}</p>
+              </motion.div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-400 ml-1">Nombre</label>
+                  <label className="text-sm font-medium text-gray-400 ml-1">Nombre *</label>
                   <input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-primary border border-white/10 rounded-xl text-white focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder-gray-600"
+                    className={`w-full px-4 py-3 bg-primary border ${
+                      errors.name ? 'border-red-500' : 'border-white/10'
+                    } rounded-xl text-white focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder-gray-600`}
                     placeholder="Tu nombre"
-                    required
                   />
+                  {errors.name && (
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="text-red-400 text-xs ml-1"
+                    >
+                      {errors.name}
+                    </motion.p>
+                  )}
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-400 ml-1">Email</label>
+                  <label className="text-sm font-medium text-gray-400 ml-1">Email *</label>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-primary border border-white/10 rounded-xl text-white focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder-gray-600"
+                    className={`w-full px-4 py-3 bg-primary border ${
+                      errors.email ? 'border-red-500' : 'border-white/10'
+                    } rounded-xl text-white focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder-gray-600`}
                     placeholder="tucorreo@empresa.com"
-                    required
                   />
+                  {errors.email && (
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="text-red-400 text-xs ml-1"
+                    >
+                      {errors.email}
+                    </motion.p>
+                  )}
                 </div>
               </div>
 
@@ -148,29 +250,41 @@ const Contacto = () => {
                   <option value="Desarrollo">Desarrollo de Software</option>
                   <option value="Consultoria">Consultoría Estratégica</option>
                   <option value="Seguridad">Ciberseguridad</option>
+                  <option value="IA">Inteligencia Artificial</option>
                 </select>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-400 ml-1">Mensaje</label>
+                <label className="text-sm font-medium text-gray-400 ml-1">Mensaje *</label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows="4"
-                  className="w-full px-4 py-3 bg-primary border border-white/10 rounded-xl text-white focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder-gray-600 resize-none"
+                  className={`w-full px-4 py-3 bg-primary border ${
+                    errors.message ? 'border-red-500' : 'border-white/10'
+                  } rounded-xl text-white focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder-gray-600 resize-none`}
                   placeholder="Cuéntanos sobre tu proyecto..."
-                  required
                 ></textarea>
+                {errors.message && (
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-red-400 text-xs ml-1"
+                  >
+                    {errors.message}
+                  </motion.p>
+                )}
               </div>
 
               <motion.button
                 type="submit"
-                className="w-full py-4 btn-primary rounded-xl font-bold text-lg tracking-wide shadow-lg"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                disabled={isSubmitting}
+                className="w-full py-4 btn-primary rounded-xl font-bold text-lg tracking-wide shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                whileTap={!isSubmitting ? { scale: 0.98 } : {}}
               >
-                Enviar Mensaje
+                {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
               </motion.button>
             </form>
           </motion.div>

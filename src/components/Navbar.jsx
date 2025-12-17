@@ -4,22 +4,57 @@ import { motion } from 'framer-motion';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      // Detectar sección activa
+      const sections = ['hero', 'pilares', 'servicios', 'proceso', 'equipo', 'contacto'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
+          
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { href: '#hero', label: 'Inicio' },
-    { href: '#pilares', label: 'Pilares' },
-    { href: '#servicios', label: 'Servicios' },
-    { href: '#proceso', label: 'Proceso' },
-    { href: '#equipo', label: 'Equipo' },
+    { href: '#hero', label: 'Inicio', id: 'hero' },
+    { href: '#pilares', label: 'Pilares', id: 'pilares' },
+    { href: '#servicios', label: 'Servicios', id: 'servicios' },
+    { href: '#proceso', label: 'Proceso', id: 'proceso' },
+    { href: '#equipo', label: 'Equipo', id: 'equipo' },
   ];
+
+  const handleLinkClick = (e, href) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      const offsetTop = element.offsetTop - 80;
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <motion.nav
@@ -36,6 +71,7 @@ const Navbar = () => {
           {/* Logo */}
           <motion.a
             href="#hero"
+            onClick={(e) => handleLinkClick(e, '#hero')}
             className="flex items-center gap-2 text-2xl font-bold text-white"
             whileHover={{ scale: 1.05 }}
           >
@@ -51,17 +87,23 @@ const Navbar = () => {
               <motion.a
                 key={link.href}
                 href={link.href}
-                className="text-gray-300 font-medium hover:text-white transition-colors relative group text-sm uppercase tracking-wide"
+                onClick={(e) => handleLinkClick(e, link.href)}
+                className={`text-gray-300 font-medium hover:text-white transition-colors relative group text-sm uppercase tracking-wide ${
+                  activeSection === link.id ? 'text-white' : ''
+                }`}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full shadow-[0_0_10px_var(--color-accent)]" />
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-accent transition-all shadow-[0_0_10px_var(--color-accent)] ${
+                  activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'
+                }`} />
               </motion.a>
             ))}
             <motion.a
               href="#contacto"
+              onClick={(e) => handleLinkClick(e, '#contacto')}
               className="px-6 py-2.5 btn-primary rounded-full font-semibold text-sm tracking-wide"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -101,16 +143,18 @@ const Navbar = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="block text-gray-300 font-medium hover:text-white transition-colors text-lg"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => handleLinkClick(e, link.href)}
+                className={`block text-gray-300 font-medium hover:text-white transition-colors text-lg ${
+                  activeSection === link.id ? 'text-accent' : ''
+                }`}
               >
                 {link.label}
               </a>
             ))}
             <a
               href="#contacto"
+              onClick={(e) => handleLinkClick(e, '#contacto')}
               className="block w-full max-w-xs px-6 py-3 btn-primary rounded-full font-semibold text-center mt-4"
-              onClick={() => setIsMobileMenuOpen(false)}
             >
               Contacto
             </a>
