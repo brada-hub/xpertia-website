@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '../context/ThemeContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const { theme, toggleTheme, isDark } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,13 +63,26 @@ const Navbar = () => {
     }, 150);
   };
 
+  // Iconos de sol y luna para el toggle
+  const SunIcon = () => (
+    <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+      <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+    </svg>
+  );
+
+  const MoonIcon = () => (
+    <svg className="w-3.5 h-3.5 text-indigo-900" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+    </svg>
+  );
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-primary/90 backdrop-blur-lg border-b border-white/10 shadow-lg'
+          ? `${isDark ? 'bg-primary/90' : 'bg-white/90'} backdrop-blur-lg border-b ${isDark ? 'border-white/10' : 'border-gray-200'} shadow-lg`
           : 'bg-transparent border-b border-transparent'
       }`}
     >
@@ -77,7 +92,7 @@ const Navbar = () => {
           <motion.a
             href="#hero"
             onClick={(e) => handleLinkClick(e, '#hero')}
-            className="flex items-center gap-2 text-2xl font-bold text-white"
+            className={`flex items-center gap-2 text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}
             whileHover={{ scale: 1.05 }}
           >
             <div className="w-10 h-10 bg-gradient-to-br from-accent to-purple-600 rounded-xl flex items-center justify-center text-white font-heading shadow-glow">
@@ -87,14 +102,16 @@ const Navbar = () => {
           </motion.a>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link, index) => (
               <motion.a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className={`text-gray-300 font-medium hover:text-white transition-colors relative group text-sm uppercase tracking-wide ${
-                  activeSection === link.id ? 'text-white' : ''
+                className={`font-medium hover:text-accent transition-colors relative group text-sm uppercase tracking-wide ${
+                  activeSection === link.id 
+                    ? 'text-accent' 
+                    : isDark ? 'text-gray-300' : 'text-gray-600'
                 }`}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -106,10 +123,41 @@ const Navbar = () => {
                 }`} />
               </motion.a>
             ))}
+            
+            {/* Theme Toggle Switch */}
+            <motion.button
+              onClick={toggleTheme}
+              className={`relative w-14 h-7 rounded-full p-1 cursor-pointer transition-all duration-500 ${
+                isDark 
+                  ? 'bg-gradient-to-r from-indigo-900 to-purple-900' 
+                  : 'bg-gradient-to-r from-amber-200 to-orange-300'
+              }`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              title={isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+            >
+              <motion.div
+                className={`w-5 h-5 rounded-full flex items-center justify-center transition-colors duration-500 ${
+                  isDark 
+                    ? 'bg-indigo-400' 
+                    : 'bg-amber-500'
+                }`}
+                animate={{ x: isDark ? 0 : 28 }}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                style={{
+                  boxShadow: isDark 
+                    ? '0 0 10px rgba(129, 140, 248, 0.6)' 
+                    : '0 0 15px rgba(251, 191, 36, 0.8)'
+                }}
+              >
+                {isDark ? <MoonIcon /> : <SunIcon />}
+              </motion.div>
+            </motion.button>
+
             <motion.a
               href="#contacto"
               onClick={(e) => handleLinkClick(e, '#contacto')}
-              className="px-6 py-2.5 btn-primary rounded-full font-semibold text-sm tracking-wide"
+              className="px-6 py-2.5 bg-gradient-to-r from-accent to-purple-600 text-white rounded-full font-semibold text-sm tracking-wide hover:shadow-lg hover:shadow-accent/30 transition-all"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -117,31 +165,60 @@ const Navbar = () => {
             </motion.a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden flex flex-col gap-1.5 p-2 text-white"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <motion.span
-              className="w-7 h-0.5 bg-white rounded-full"
-              animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-            />
-            <motion.span
-              className="w-7 h-0.5 bg-white rounded-full"
-              animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-            />
-            <motion.span
-              className="w-7 h-0.5 bg-white rounded-full"
-              animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-            />
-          </button>
+          {/* Mobile: Theme Toggle + Menu Button */}
+          <div className="md:hidden flex items-center gap-3">
+            {/* Theme Toggle for Mobile */}
+            <motion.button
+              onClick={toggleTheme}
+              className={`relative w-12 h-6 rounded-full p-0.5 cursor-pointer transition-all duration-500 ${
+                isDark 
+                  ? 'bg-gradient-to-r from-indigo-900 to-purple-900' 
+                  : 'bg-gradient-to-r from-amber-200 to-orange-300'
+              }`}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div
+                className={`w-5 h-5 rounded-full flex items-center justify-center ${
+                  isDark ? 'bg-indigo-400' : 'bg-amber-500'
+                }`}
+                animate={{ x: isDark ? 0 : 24 }}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                style={{
+                  boxShadow: isDark 
+                    ? '0 0 8px rgba(129, 140, 248, 0.6)' 
+                    : '0 0 10px rgba(251, 191, 36, 0.8)'
+                }}
+              >
+                {isDark ? <MoonIcon /> : <SunIcon />}
+              </motion.div>
+            </motion.button>
+
+            {/* Mobile Menu Button */}
+            <button
+              className={`flex flex-col gap-1.5 p-2 ${isDark ? 'text-white' : 'text-gray-900'}`}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <motion.span
+                className={`w-7 h-0.5 rounded-full ${isDark ? 'bg-white' : 'bg-gray-900'}`}
+                animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+              />
+              <motion.span
+                className={`w-7 h-0.5 rounded-full ${isDark ? 'bg-white' : 'bg-gray-900'}`}
+                animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+              />
+              <motion.span
+                className={`w-7 h-0.5 rounded-full ${isDark ? 'bg-white' : 'bg-gray-900'}`}
+                animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+              />
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
         <motion.div
           initial={false}
           animate={isMobileMenuOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-          className="md:hidden overflow-hidden bg-primary-light/95 backdrop-blur-xl rounded-b-2xl border-t border-white/10"
+          className={`md:hidden overflow-hidden ${isDark ? 'bg-primary-light/95' : 'bg-white/95'} backdrop-blur-xl rounded-b-2xl border-t ${isDark ? 'border-white/10' : 'border-gray-200'}`}
         >
           <div className="py-6 px-4 space-y-4 flex flex-col items-center">
             {navLinks.map((link) => (
@@ -149,8 +226,10 @@ const Navbar = () => {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className={`block text-gray-300 font-medium hover:text-white transition-colors text-lg ${
-                  activeSection === link.id ? 'text-accent' : ''
+                className={`block font-medium hover:text-accent transition-colors text-lg ${
+                  activeSection === link.id 
+                    ? 'text-accent' 
+                    : isDark ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
                 {link.label}
@@ -159,7 +238,7 @@ const Navbar = () => {
             <a
               href="#contacto"
               onClick={(e) => handleLinkClick(e, '#contacto')}
-              className="block w-full max-w-xs px-6 py-3 btn-primary rounded-full font-semibold text-center mt-4"
+              className="block w-full max-w-xs px-6 py-3 bg-gradient-to-r from-accent to-purple-600 text-white rounded-full font-semibold text-center mt-4"
             >
               Contacto
             </a>

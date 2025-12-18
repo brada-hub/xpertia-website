@@ -266,9 +266,9 @@ const ServiceFullScreen = ({ isOpen, onClose, service }) => {
       ]
     },
     diseno: {
-      title: 'Experiencia Digital y Gestión de Contenidos Estratégica',
-      description: 'Creamos experiencias digitales memorables y gestionamos tu contenido de manera eficiente.',
-      intro: 'En la era digital, tu sitio web es la cara de tu negocio. Diseñamos experiencias web que no solo se ven increíbles, sino que convierten visitantes en clientes.',
+      title: 'UX UI y Plataformas Digitales',
+      description: 'Diseñamos experiencias digitales memorables, plataformas innovadoras y gestionamos publicaciones científicas de alta calidad.',
+      intro: 'En la era digital, la experiencia del usuario es fundamental. Combinamos diseño UX/UI de vanguardia con servicios especializados de publicación científica para universidades, investigadores e instituciones académicas.',
       servicios: [
         {
           icon: icons.palette,
@@ -289,13 +289,35 @@ const ServiceFullScreen = ({ isOpen, onClose, service }) => {
           icon: icons.sparkles,
           title: 'Optimización SEO y Performance',
           description: 'Mejora de posicionamiento en buscadores y optimización de velocidad de carga.'
+        },
+        {
+          icon: icons.academic,
+          title: 'Revistas Científicas Digitales',
+          description: 'Desarrollo e implementación de plataformas OJS (Open Journal Systems) para revistas científicas indexadas.'
+        },
+        {
+          icon: icons.globe,
+          title: 'Indexación y Visibilidad Científica',
+          description: 'Asesoría para indexación en bases de datos reconocidas: Scopus, WoS, SciELO, DOAJ, Latindex y más.'
+        },
+        {
+          icon: icons.chart,
+          title: 'Métricas e Impacto Académico',
+          description: 'Implementación de sistemas de métricas (Altmetrics, CrossRef), DOI y seguimiento de citaciones.'
+        },
+        {
+          icon: icons.cog,
+          title: 'Flujos Editoriales Automatizados',
+          description: 'Configuración de workflows de revisión por pares, gestión editorial y publicación automatizada.'
         }
       ],
       beneficios: [
-        'Investigación: Entendemos tu negocio, audiencia y competencia',
-        'Diseño: Creamos wireframes y prototipos interactivos',
-        'Desarrollo: Construimos tu sitio con código limpio y optimizado',
-        'Lanzamiento: Desplegamos y monitoreamos el rendimiento'
+        'Plataformas OJS personalizadas con diseño profesional',
+        'Asesoría completa para indexación en Scopus, SciELO, Latindex',
+        'Integración con ORCID, CrossRef, DOI y sistemas antiplagio',
+        'Capacitación para equipos editoriales y autores',
+        'Soporte técnico continuo y actualizaciones de seguridad',
+        'Migración de contenidos históricos a formatos digitales'
       ]
     },
     seguridad: {
