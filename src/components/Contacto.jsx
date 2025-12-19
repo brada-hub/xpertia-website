@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 const Contacto = () => {
   const ref = useRef(null);
@@ -8,12 +8,32 @@ const Contacto = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    service: 'General',
+    service: 'consultoria', // Default value matching the first option
     message: '',
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+
+  useEffect(() => {
+    const handlePrefill = (event) => {
+      const { service } = event.detail;
+      if (service) {
+        setFormData(prev => ({
+          ...prev,
+          service: service
+        }));
+        // Scroll to contact section
+        const contactSection = document.getElementById('contacto');
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    };
+
+    window.addEventListener('prefill-contact', handlePrefill);
+    return () => window.removeEventListener('prefill-contact', handlePrefill);
+  }, []);
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -45,19 +65,19 @@ const Contacto = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
 
     setIsSubmitting(true);
-    
+
     // Simular envío (aquí integrarías tu backend o servicio de email)
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
       console.log('Formulario enviado:', formData);
-      
+
       setSubmitMessage('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
       setFormData({
         name: '',
@@ -71,7 +91,7 @@ const Contacto = () => {
       setTimeout(() => {
         setSubmitMessage('');
       }, 5000);
-      
+
     } catch (error) {
       setSubmitMessage('Hubo un error al enviar el mensaje. Por favor intenta de nuevo.');
     } finally {
@@ -85,7 +105,7 @@ const Contacto = () => {
       ...prev,
       [name]: value,
     }));
-    
+
     // Limpiar error del campo al escribir
     if (errors[name]) {
       setErrors(prev => ({
@@ -99,10 +119,10 @@ const Contacto = () => {
     <section id="contacto" className="py-24 bg-primary relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full bg-pattern opacity-20 pointer-events-none" />
-      
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
-          
+
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -115,7 +135,7 @@ const Contacto = () => {
               <span className="text-gradient">Próximo Proyecto</span>
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 md:mb-12 leading-relaxed">
-              Estamos listos para escuchar tus ideas y convertirlas en realidad. 
+              Estamos listos para escuchar tus ideas y convertirlas en realidad.
               Contáctanos para una consultoría inicial gratuita.
             </p>
 
@@ -182,9 +202,8 @@ const Contacto = () => {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className={`mb-6 p-4 rounded-xl ${
-                  submitMessage.includes('error') ? 'bg-red-500/20 border border-red-500/50' : 'bg-green-500/20 border border-green-500/50'
-                }`}
+                className={`mb-6 p-4 rounded-xl ${submitMessage.includes('error') ? 'bg-red-500/20 border border-red-500/50' : 'bg-green-500/20 border border-green-500/50'
+                  }`}
               >
                 <p className="text-white text-sm">{submitMessage}</p>
               </motion.div>
@@ -199,9 +218,8 @@ const Contacto = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 bg-primary border ${
-                      errors.name ? 'border-red-500' : 'border-white/10'
-                    } rounded-xl text-white focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder-gray-600`}
+                    className={`w-full px-4 py-3 bg-primary border ${errors.name ? 'border-red-500' : 'border-white/10'
+                      } rounded-xl text-white focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder-gray-600`}
                     placeholder="Tu nombre"
                   />
                   {errors.name && (
@@ -221,9 +239,8 @@ const Contacto = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 bg-primary border ${
-                      errors.email ? 'border-red-500' : 'border-white/10'
-                    } rounded-xl text-white focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder-gray-600`}
+                    className={`w-full px-4 py-3 bg-primary border ${errors.email ? 'border-red-500' : 'border-white/10'
+                      } rounded-xl text-white focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder-gray-600`}
                     placeholder="tucorreo@empresa.com"
                   />
                   {errors.email && (
@@ -246,11 +263,12 @@ const Contacto = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-primary border border-white/10 rounded-xl text-white focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all appearance-none cursor-pointer"
                 >
-                  <option value="General">Consulta General</option>
-                  <option value="Desarrollo">Desarrollo de Software</option>
-                  <option value="Consultoria">Consultoría Estratégica</option>
-                  <option value="Seguridad">Ciberseguridad</option>
-                  <option value="IA">Inteligencia Artificial</option>
+                  <option value="consultoria">Consultoría Estratégica</option>
+                  <option value="desarrollo">Desarrollo de Software</option>
+                  <option value="ia">Ciencia de Datos & IA</option>
+                  <option value="marketing">Marketing Digital</option>
+                  <option value="seguridad">Ciberseguridad</option>
+                  <option value="diseno">UX/UI & Plataformas</option>
                 </select>
               </div>
 
@@ -261,9 +279,8 @@ const Contacto = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows="4"
-                  className={`w-full px-4 py-3 bg-primary border ${
-                    errors.message ? 'border-red-500' : 'border-white/10'
-                  } rounded-xl text-white focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder-gray-600 resize-none`}
+                  className={`w-full px-4 py-3 bg-primary border ${errors.message ? 'border-red-500' : 'border-white/10'
+                    } rounded-xl text-white focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all placeholder-gray-600 resize-none`}
                   placeholder="Cuéntanos sobre tu proyecto..."
                 ></textarea>
                 {errors.message && (

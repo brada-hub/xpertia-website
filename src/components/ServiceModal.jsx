@@ -21,120 +21,134 @@ const ServiceModal = ({ isOpen, onClose, service }) => {
 
   const serviceDetails = {
     consultoria: {
-      title: 'Asesoramiento Estratégico y Planificación de la Transformación Digital',
-      description: 'Guiamos tu organización en el camino hacia la transformación digital con estrategias personalizadas y ejecutables.',
+      title: 'Asesoramiento Estratégico y Transformación Digital',
+      description: 'Más que consultores, somos arquitectos de tu futuro digital. Analizamos el ADN de tu empresa para diseñar estrategias tecnológicas que no solo resuelven problemas actuales, sino que desbloquean nuevas oportunidades de negocio. Alineamos TI con los objetivos corporativos para maximizar el retorno de inversión y asegurar la sostenibilidad a largo plazo.',
       services: [
         {
-          name: 'Diagnóstico Tecnológico Integral',
-          description: 'Evaluación completa de tu infraestructura actual, identificando fortalezas, debilidades y oportunidades de mejora.'
+          name: 'Diagnóstico Tecnológico 360°',
+          description: 'Auditoría profunda de sistemas, procesos y talento para identificar brechas de eficiencia y riesgos operativos.'
         },
         {
-          name: 'Hoja de Ruta de Transformación Digital',
-          description: 'Planificación estratégica detallada con fases, hitos y métricas de éxito para tu evolución tecnológica.'
+          name: 'Hoja de Ruta de Transformación',
+          description: 'Plan maestro evolutivo con KPIs claros, priorizando iniciativas de alto impacto y bajo esfuerzo inicial (Quick Wins).'
         },
         {
-          name: 'PMO (Project Management Office)',
-          description: 'Gestión profesional de proyectos con metodologías ágiles, asegurando entregas a tiempo y dentro del presupuesto.'
+          name: 'Gestión de Portafolio de Proyectos (PMO)',
+          description: 'Estandarización de metodologías ágiles (Scrum, SAFe) para garantizar entregas predecibles y de calidad.'
         },
         {
-          name: 'Asesoría de Tesis y Proyectos Académicos',
-          description: 'Acompañamiento especializado en proyectos de investigación y desarrollo tecnológico académico.'
+          name: 'Investigación & Desarrollo (I+D)',
+          description: 'Asesoría en la creación de labs de innovación internos y colaboración con entidades académicas.'
         }
       ]
     },
     desarrollo: {
-      title: 'Ingeniería de Soluciones a Medida: Desde la Arquitectura hasta el Despliegue',
-      description: 'Desarrollamos software robusto y escalable que se adapta perfectamente a tus necesidades de negocio.',
+      title: 'Ingeniería de Software & Arquitectura de Sistemas',
+      description: 'Construimos el motor digital de tu empresa. Nuestro enfoque de ingeniería se basa en la calidad, la escalabilidad y la mantenibilidad. Desde plataformas web complejas hasta aplicaciones móviles nativas, entregamos código limpio y documentado que sirve como base sólida para el crecimiento de tu negocio.',
       services: [
         {
-          name: 'Aplicaciones Web Empresariales (CRM/ERP)',
-          description: 'Sistemas personalizados para gestión de clientes, recursos empresariales y procesos de negocio específicos.'
+          name: 'Desarrollo Web Full-Stack',
+          description: 'Aplicaciones SPA/PWA de alto rendimiento utilizando React, Next.js, Node.js y arquitecturas Serverless.'
         },
         {
-          name: 'Aplicaciones Móviles Nativas',
-          description: 'Desarrollo de apps iOS y Android con rendimiento óptimo y experiencia de usuario excepcional.'
+          name: 'Soluciones Móviles Nativas & Cross-Platform',
+          description: 'Desarrollo para iOS y Android utilizando Swift, Kotlin o Flutter, garantizando una experiencia nativa fluida.'
         },
         {
-          name: 'Modernización de Sistemas Legacy',
-          description: 'Actualización y migración de sistemas antiguos a tecnologías modernas sin perder funcionalidad crítica.'
+          name: 'Modernización de Legacy',
+          description: 'Estrategias de "Strangler Fig" para migrar sistemas monolíticos antiguos a microservicios modernos sin tiempo de inactividad.'
         },
         {
-          name: 'Arquitectura de Microservicios',
-          description: 'Diseño de sistemas distribuidos escalables y resilientes para aplicaciones empresariales complejas.'
-        },
-        {
-          name: 'DevOps y CI/CD',
-          description: 'Implementación de pipelines de integración y despliegue continuo para entregas rápidas y confiables.'
+          name: 'Ingeniería de Plataforma (DevOps)',
+          description: 'Automatización total del ciclo de vida del software (CI/CD), infraestructura como código (IaC) y monitoreo proactivo.'
         }
       ]
     },
     ia: {
-      title: 'Integración Cognitiva: Automatización, Analítica Avanzada y Transferencia de Conocimiento',
-      description: 'Potenciamos tu negocio con inteligencia artificial y automatización inteligente de procesos.',
+      title: 'Inteligencia Artificial & Ciencia de Datos',
+      description: 'Transformamos datos brutos en ventajas competitivas. Ayudamos a las organizaciones a pasar de la intuición a la decisión basada en evidencia, implementando soluciones de IA que automatizan tareas, predicen comportamientos y personalizan la experiencia del cliente a escala masiva.',
       services: [
         {
-          name: 'Integración de Herramientas de IA y Machine Learning',
-          description: 'Implementación de modelos de ML personalizados para predicción, clasificación y análisis de datos.'
+          name: 'Machine Learning & Modelos Predictivos',
+          description: 'Algoritmos personalizados para previsión de demanda, detección de fraude y segmentación dinámica de clientes.'
         },
         {
-          name: 'Analítica Predictiva y Big Data',
-          description: 'Procesamiento y análisis de grandes volúmenes de datos para obtener insights accionables.'
+          name: 'Procesamiento de Lenguaje Natural (NLP)',
+          description: 'Chatbots avanzados, análisis de sentimiento en redes sociales y extracción automática de información documental.'
         },
         {
-          name: 'Automatización Inteligente (IPA/RPA)',
-          description: 'Automatización de procesos repetitivos con inteligencia artificial para mayor eficiencia operativa.'
+          name: 'Business Intelligence & Dashboards',
+          description: 'Visualización de datos en tiempo real (PowerBI, Tableau, Looker) para democratizar el acceso a la información.'
         },
         {
-          name: 'Programas de Capacitación Técnica',
-          description: 'Formación especializada en tecnologías emergentes, desarrollo de software y mejores prácticas.'
+          name: 'Automatización Robótica de Procesos (RPA)',
+          description: 'Bots de software que ejecutan tareas repetitivas administrativas 24/7 con cero margen de error.'
         }
       ]
     },
-    redes: {
-      title: 'Defensa Digital y Arquitectura de Red de Alto Rendimiento',
-      description: 'Protegemos tus activos digitales y diseñamos infraestructuras de red robustas y seguras.',
+    marketing: {
+      title: 'Marketing Digital & Growth Hacking',
+      description: 'Conectamos tu marca con las personas correctas. Fusionamos creatividad con analítica de datos para diseñar ecosistemas de marketing que cubren todo el embudo de conversión. No solo buscamos "likes", buscamos leads cualificados, ventas y lealtad de marca a largo plazo.',
       services: [
         {
-          name: 'Diseño y Optimización de Redes Empresariales',
-          description: 'Arquitectura de red escalable y de alto rendimiento adaptada a las necesidades de tu organización.'
+          name: 'Estrategia SEO/SEM Data-Driven',
+          description: 'Dominio de motores de búsqueda mediante optimización técnica y campañas de pago (PPC) con optimización algorítmica de pujas.'
         },
         {
-          name: 'Servicios Cloud y DevOps',
-          description: 'Migración, gestión y optimización de infraestructura en la nube (AWS, Azure, GCP).'
+          name: 'Marketing de Contenidos & Storytelling',
+          description: 'Creación de narrativas transmedia que educan y entretienen, posicionando a tu marca como autoridad en su industria.'
         },
         {
-          name: 'Auditoría de Ciberseguridad',
-          description: 'Evaluación exhaustiva de vulnerabilidades y riesgos de seguridad en tu infraestructura.'
+          name: 'Social Media & Community Management',
+          description: 'Gestión profesional de presencia en redes (LinkedIn, Instagram, TikTok) enfocada en engagement y construcción de comunidad.'
         },
         {
-          name: 'Implementación de Protocolos de Seguridad',
-          description: 'Despliegue de medidas de seguridad avanzadas: firewalls, VPN, autenticación multifactor, encriptación.'
+          name: 'Analítica Web & Atribución',
+          description: 'Configuración avanzada de Google Analytics 4 y modelos de atribución para entender el ROI exacto de cada canal.'
+        }
+      ]
+    },
+    seguridad: {
+      title: 'Ciberseguridad & Resiliencia Digital',
+      description: 'La seguridad no es un producto, es un proceso. Protegemos la continuidad de tu negocio mediante un enfoque de defensa en profundidad. Identificamos vulnerabilidades antes que los atacantes y diseñamos arquitecturas resilientes capaces de resistir y recuperarse de incidentes cibernéticos.',
+      services: [
+        {
+          name: 'Hacking Ético & Pentesting',
+          description: 'Simulaciones de ataques reales (Red Teaming) para poner a prueba las defensas de tu infraestructura y aplicaciones.'
         },
         {
-          name: 'Recuperación y Análisis Forense',
-          description: 'Investigación de incidentes de seguridad y recuperación de sistemas comprometidos.'
+          name: 'Arquitectura Zero Trust',
+          description: 'Implementación de modelos de seguridad donde "nunca se confía, siempre se verifica", segmentando redes y accesos.'
+        },
+        {
+          name: 'Gestión de Identidades (IAM)',
+          description: 'Sistemas centralizados de autenticación (SSO, MFA) para asegurar que solo las personas correctas accedan a los datos.'
+        },
+        {
+          name: 'Cumplimiento Normativo (Compliance)',
+          description: 'Alineación de infraestructura con estándares internacionales como ISO 27001, GDPR, PCI-DSS y SOC2.'
         }
       ]
     },
     diseno: {
-      title: 'Experiencia Digital y Gestión de Contenidos Estratégica',
-      description: 'Creamos experiencias digitales memorables y gestionamos tu contenido de manera eficiente.',
+      title: 'Diseño UX/UI & Experiencias Digitales',
+      description: 'Diseñamos para humanos. Creamos interfaces digitales que no solo son estéticamente impactantes, sino funcionalmente intuitivas. Nos especializamos en reducir la fricción cognitiva y guiar al usuario suavemente hacia los objetivos de conversión, todo mientras fortalecemos la identidad visual de tu marca.',
       services: [
         {
-          name: 'Diseño Web UX/UI de Alto Impacto',
-          description: 'Interfaces modernas, intuitivas y centradas en el usuario que convierten visitantes en clientes.'
+          name: 'Investigación de Usuarios (UX Research)',
+          description: 'Entrevistas, pruebas de usabilidad y análisis de mapas de calor para entender realmente qué necesitan tus usuarios.'
         },
         {
-          name: 'Implementación y Personalización de CMS',
-          description: 'Desarrollo de sitios web con WordPress, Drupal y otros CMS, totalmente personalizados.'
+          name: 'Sistemas de Diseño (Design Systems)',
+          description: 'Creación de bibliotecas de componentes reutilizables que garantizan consistencia visual y aceleran el desarrollo.'
         },
         {
-          name: 'Gestión de Plataformas LMS',
-          description: 'Implementación y personalización de sistemas de gestión de aprendizaje (Moodle, Canvas).'
+          name: 'Desarrollo de CMS Personalizados',
+          description: 'Implementación de gestores de contenido (WordPress, Strapi) tailored para que tu equipo editorial vuele.'
         },
         {
-          name: 'Optimización SEO y Performance',
-          description: 'Mejora de posicionamiento en buscadores y optimización de velocidad de carga.'
+          name: 'Plataformas Editoriales & Científicas',
+          description: 'Sistemas OJS (Open Journal Systems) y portales académicos optimizados para indexación y visibilidad científica.'
         }
       ]
     }
@@ -148,7 +162,7 @@ const ServiceModal = ({ isOpen, onClose, service }) => {
         <>
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/80 backdrop-blur-md z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -158,7 +172,7 @@ const ServiceModal = ({ isOpen, onClose, service }) => {
           {/* Modal */}
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 overflow-y-auto">
             <motion.div
-              className="relative bg-primary-light rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-white/10 shadow-2xl"
+              className="relative bg-slate-900 rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-y-auto border border-white/10 shadow-2xl"
               initial={{ opacity: 0, scale: 0.9, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 50 }}
@@ -175,55 +189,68 @@ const ServiceModal = ({ isOpen, onClose, service }) => {
                 </svg>
               </button>
 
-              {/* Content */}
-              <div className="p-8 md:p-12">
-                <motion.h2
-                  className="text-3xl md:text-4xl font-bold text-white mb-6 pr-12"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                >
-                  {currentService.title}
-                </motion.h2>
+              {/* Grid Layout for Content */}
+              <div className="grid md:grid-cols-[1fr_1.5fr]">
+                {/* Left Sidebar / Header Area */}
+                <div className="bg-slate-950 p-8 md:p-12 border-b md:border-b-0 md:border-r border-white/5">
+                  <motion.h2
+                    className="text-3xl md:text-3xl font-black text-white mb-6 leading-tight"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                  >
+                    {currentService?.title || 'Servicio'}
+                  </motion.h2>
 
-                <motion.p
-                  className="text-xl text-gray-400 mb-12"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  {currentService.description}
-                </motion.p>
+                  <motion.div
+                    className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mb-8 rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: 64 }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
+                  />
 
-                <h3 className="text-2xl font-bold text-white mb-8">Servicios Incluidos</h3>
+                  <motion.p
+                    className="text-lg text-gray-400 mb-8 leading-relaxed font-light"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    {currentService?.description}
+                  </motion.p>
 
-                <div className="space-y-6 mb-12">
-                  {currentService.services.map((item, index) => (
-                    <motion.div
-                      key={index}
-                      className="bg-primary p-6 rounded-2xl border border-white/10 hover:border-accent/30 transition-all"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.3 + index * 0.1 }}
-                      whileHover={{ x: 5 }}
-                    >
-                      <h4 className="text-xl font-bold text-accent mb-3">{item.name}</h4>
-                      <p className="text-gray-400">{item.description}</p>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* CTA */}
-                <div className="text-center">
                   <motion.a
                     href="#contacto"
                     onClick={onClose}
-                    className="inline-block px-8 py-4 bg-gradient-to-r from-secondary to-accent rounded-full font-bold shadow-glow-lg text-white"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-950 rounded-xl font-bold hover:bg-cyan-50 transition-colors w-full md:w-auto justify-center"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    Solicitar Información
+                    <span>Solicitar Propuesta</span>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </motion.a>
+                </div>
+
+                {/* Right Content Area */}
+                <div className="p-8 md:p-12 bg-slate-900">
+                  <h3 className="text-xl font-bold text-white mb-8 flex items-center gap-3">
+                    <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                    Capacidades Incluidas
+                  </h3>
+
+                  <div className="grid gap-6">
+                    {currentService?.services.map((item, index) => (
+                      <motion.div
+                        key={index}
+                        className="group p-5 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-cyan-500/30 hover:bg-white/[0.05] transition-all"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3 + index * 0.1 }}
+                      >
+                        <h4 className="text-lg font-bold text-cyan-400 mb-2 group-hover:text-cyan-300 transition-colors">{item.name}</h4>
+                        <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors">{item.description}</p>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>

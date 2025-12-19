@@ -227,6 +227,39 @@ const ServiceFullScreen = ({ isOpen, onClose, service }) => {
         'Optimización de procesos mediante análisis predictivo'
       ]
     },
+    marketing: {
+      title: 'Marketing Digital & Growth Hacking',
+      description: 'Conectamos tu marca con las personas correctas. Fusionamos creatividad con analítica de datos para diseñar ecosistemas de marketing que cubren todo el embudo de conversión.',
+      intro: 'Tener el mejor producto del mundo no sirve de nada si nadie lo conoce. En un mercado saturado, el marketing digital no es una opción, es el motor que impulsa la visibilidad, la adquisición de clientes y el crecimiento sostenible de tu negocio.',
+      servicios: [
+        {
+          icon: icons.search,
+          title: 'Estrategia SEO/SEM Data-Driven',
+          description: 'Dominio de motores de búsqueda mediante optimización técnica y campañas de pago (PPC) con optimización algorítmica de pujas.'
+        },
+        {
+          icon: icons.sparkles,
+          title: 'Marketing de Contenidos & Storytelling',
+          description: 'Creación de narrativas transmedia que educan y entretienen, posicionando a tu marca como autoridad en su industria.'
+        },
+        {
+          icon: icons.users,
+          title: 'Social Media & Community Management',
+          description: 'Gestión profesional de presencia en redes (LinkedIn, Instagram, TikTok) enfocada en engagement y construcción de comunidad.'
+        },
+        {
+          icon: icons.chart,
+          title: 'Analítica Web & Atribución',
+          description: 'Configuración avanzada de Google Analytics 4 y modelos de atribución para entender el ROI exacto de cada canal.'
+        }
+      ],
+      beneficios: [
+        'Mayor visibilidad y posicionamiento de marca',
+        'Generación constante de leads cualificados',
+        'Mejora del retorno de inversión (ROI) publicitario',
+        'Fidelización y retención de clientes a largo plazo'
+      ]
+    },
     redes: {
       title: 'Defensa Digital y Arquitectura de Red de Alto Rendimiento',
       description: 'Protegemos tus activos digitales y diseñamos infraestructuras de red robustas y seguras.',
@@ -516,8 +549,12 @@ const ServiceFullScreen = ({ isOpen, onClose, service }) => {
                 Agenda una consulta gratuita y descubre cómo podemos ayudarte
               </p>
               <motion.a
-                href="#contacto"
-                onClick={onClose}
+                onClick={() => {
+                  onClose();
+                  // Dispatch custom event to pre-fill contact form
+                  const event = new CustomEvent('prefill-contact', { detail: { service } });
+                  window.dispatchEvent(event);
+                }}
                 className="inline-block px-10 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-full font-bold text-lg shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 transition-all"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
