@@ -9,6 +9,7 @@ import Contacto from './components/Contacto'
 import Footer from './components/Footer'
 import AnimatedBackground from './components/AnimatedBackground'
 import SocialSidebar from './components/SocialSidebar'
+import Snowfall from './components/Snowfall'
 import { useTheme } from './context/ThemeContext'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         : 'bg-slate-50 text-gray-900'
     } selection:bg-accent selection:text-white relative`}>
       <AnimatedBackground />
+      <Snowfall />
       <SocialSidebar />
       <div className="relative z-10 font-sans">
         <Navbar />

@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
+import { useTheme } from '../context/ThemeContext';
 
 const Contacto = () => {
+  const { isDark } = useTheme();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [formData, setFormData] = useState({
@@ -178,9 +180,9 @@ const Contacto = () => {
               </div>
             </div>
 
-            <div className="mt-12 p-6 bg-gradient-to-r from-primary-light to-transparent border-l-4 border-accent rounded-r-xl">
-              <h4 className="text-white font-bold mb-2">Horario de Atención</h4>
-              <p className="text-gray-400">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+            <div className={`mt-12 p-6 bg-gradient-to-r ${isDark ? 'from-cyan-500/20' : 'from-cyan-100'} to-transparent border-l-4 border-cyan-500 rounded-r-xl`}>
+              <h4 className={`font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>Horario de Atención</h4>
+              <p className={isDark ? 'text-gray-300' : 'text-slate-700'}>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
             </div>
           </motion.div>
 
@@ -297,7 +299,7 @@ const Contacto = () => {
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 btn-primary rounded-xl font-bold text-lg tracking-wide shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full btn-glow disabled:opacity-50 disabled:cursor-not-allowed"
                 whileHover={!isSubmitting ? { scale: 1.02 } : {}}
                 whileTap={!isSubmitting ? { scale: 0.98 } : {}}
               >

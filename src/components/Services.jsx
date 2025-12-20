@@ -14,7 +14,7 @@ const services = [
     title: 'Consultoría Estratégica',
     subtitle: 'Visión & Futuro',
     description: 'Transformamos tu visión corporativa en una estrategia tecnológica accionable. Desde la evaluación de infraestructura hasta la implementación de hojas de ruta digitales, aseguramos que cada inversión tecnológica impulse tus objetivos de negocio y escalabilidad a largo plazo.',
-    color: 'from-blue-600 to-indigo-600'
+    color: 'from-cyan-500 via-teal-500 to-blue-600'
   },
   {
     id: 'desarrollo',
@@ -27,7 +27,7 @@ const services = [
     title: 'Desarrollo de Software',
     subtitle: 'Código de Alto Calibre',
     description: 'Ingeniería de software de clase mundial. Creamos aplicaciones web, móviles y sistemas empresariales a medida utilizando arquitecturas de microservicios y las tecnologías más modernas, garantizando rendimiento, seguridad y una experiencia de usuario impecable.',
-    color: 'from-violet-600 to-purple-600'
+    color: 'from-cyan-500 via-teal-500 to-blue-600'
   },
   {
     id: 'ia',
@@ -40,7 +40,7 @@ const services = [
     title: 'Ciencia de Datos & IA',
     subtitle: 'Inteligencia Aplicada',
     description: 'Convierte tus datos en tu activo más valioso. Implementamos modelos de Machine Learning, automatización inteligente y análisis predictivo para optimizar la toma de decisiones, predecir tendencias de mercado y automatizar procesos operativos complejos.',
-    color: 'from-emerald-500 to-teal-500'
+    color: 'from-cyan-500 via-teal-500 to-blue-600'
   },
   {
     id: 'marketing',
@@ -52,7 +52,7 @@ const services = [
     title: 'Marketing Digital',
     subtitle: 'Crecimiento & Alcance',
     description: 'Impulsa tu presencia digital y maximiza tu ROI. Ofrecemos gestión integral de campañas, SEO/SEM avanzado, marketing de contenidos y estrategias de crecimiento para conectar tu marca con la audiencia correcta en el momento perfecto.',
-    color: 'from-pink-500 to-rose-500'
+    color: 'from-cyan-500 via-teal-500 to-blue-600'
   },
   {
     id: 'seguridad',
@@ -65,7 +65,7 @@ const services = [
     title: 'Ciberseguridad',
     subtitle: 'Protección Total',
     description: 'Protección integral para tu ecosistema digital. Desplegamos estrategias de defensa en profundidad, desde pruebas de penetración y auditorías de seguridad hasta la implementación de centros de operaciones de seguridad y respuesta a incidentes en tiempo real.',
-    color: 'from-red-600 to-orange-600'
+    color: 'from-cyan-500 via-teal-500 to-blue-600'
   },
   {
     id: 'diseno',
@@ -77,7 +77,7 @@ const services = [
     title: 'UX/UI & Plataformas',
     subtitle: 'Experiencias Científicas',
     description: 'Diseño centrado en el humano que cautiva y convierte. Creamos experiencias digitales intuitivas y sistemas de gestión de contenido (CMS) optimizados, especializándonos también en plataformas académicas y revistas científicas de alto impacto.',
-    color: 'from-orange-500 to-amber-500'
+    color: 'from-cyan-500 via-teal-500 to-blue-600'
   }
 ];
 
@@ -103,8 +103,8 @@ const Services = () => {
       <section ref={sectionRef} id="servicios" className="relative py-12 sm:py-16 md:py-24 lg:py-32 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 overflow-hidden min-h-screen flex flex-col justify-center">
         {/* Background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/10 via-transparent to-transparent pointer-events-none" />
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mb-10">
           <motion.div
@@ -115,7 +115,7 @@ const Services = () => {
           >
             <span className="text-cyan-400 font-bold tracking-widest uppercase text-xs sm:text-sm mb-3 md:mb-4 block">Nuestras Capacidades</span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-6 leading-tight">
-              Ecosistema <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">Digital.</span>
+              Ecosistema <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-400">Digital.</span>
             </h2>
             <p className="text-gray-400 text-sm sm:text-base md:text-xl max-w-2xl mx-auto">
               Soluciones integrales diseñadas para el crecimiento. Haz clic en una tarjeta para expandir los detalles.
@@ -123,113 +123,65 @@ const Services = () => {
           </motion.div>
         </div>
 
-        {/* Focused Layout Component */}
-        <div className="w-full max-w-[1400px] mx-auto px-4 relative flex flex-col items-center justify-center">
+        {/* Grid de Servicios */}
+        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, index) => (
+              <motion.div
+                key={service.id}
+                className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/[0.03] backdrop-blur-sm cursor-pointer group hover:border-cyan-500/50 hover:bg-white/[0.06] transition-all duration-500"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                onClick={() => {
+                  setSelectedServiceId(service.id);
+                  setFullscreenOpen(true);
+                }}
+              >
+                {/* Gradient Background */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`} />
 
-          {/* Desktop/Tablet Horizontal Layout */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 lg:gap-6 w-full perspective-1000">
-            {services.map((service, index) => {
-              const isActive = index === activeIndex;
-              const distance = Math.abs(activeIndex - index);
-
-              // Simple scale logic based on distance
-              const scale = isActive ? 1.05 : Math.max(0.90 - (distance * 0.05), 0.80);
-              const opacity = isActive ? 1 : Math.max(0.8 - (distance * 0.1), 0.5);
-              const zIndex = 50 - distance;
-
-              return (
-                <motion.div
-                  key={service.id}
-                  layout
-                  className={`
-                                relative rounded-3xl overflow-hidden border transition-all duration-500 cursor-pointer
-                                ${isActive
-                      ? 'w-full md:w-[450px] lg:w-[500px] min-h-[450px] md:min-h-[500px] bg-white/[0.08] border-cyan-500/50 shadow-[0_0_50px_rgba(34,211,238,0.15)]'
-                      : 'w-full md:w-[220px] lg:w-[240px] h-[100px] md:h-[400px] bg-white/[0.02] border-white/5 hover:bg-white/[0.05]'
-                    }
-                                flex flex-col flex-shrink-0
-                            `}
-                  style={{
-                    zIndex,
-                    opacity: isActive || distance < 3 ? 1 : 0.5 // Keep visible but faded if far
-                  }}
-                  animate={{
-                    flexGrow: isActive ? 2 : 0,
-                    scale: window.innerWidth > 768 ? scale : 1, // On mobile, stack them normally or use different logic
-                    opacity: window.innerWidth > 768 ? opacity : 1
-                  }}
-                  onClick={() => handleCardClick(index, service.id)}
-                >
-                  {/* Gradient Background for Active */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 ${isActive ? 'opacity-10' : ''} transition-opacity duration-700 pointer-events-none`} />
-
-                  <div className={`p-6 md:p-8 flex flex-col h-full justify-between items-center text-center md:text-left`}>
-
-                    {/* Header Area */}
-                    <div className={`flex w-full ${isActive ? 'flex-row justify-between items-start' : 'flex-col items-center gap-4'}`}>
-                      <div className={`
-                                        rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-white shadow-lg transition-all duration-500 flex-shrink-0
-                                        ${isActive ? 'w-16 h-16' : 'w-12 h-12 mb-2'}
-                                    `}>
-                        <div className={`${isActive ? 'w-8 h-8' : 'w-6 h-6'}`}>
-                          {service.icon}
-                        </div>
-                      </div>
-
-                      {/* Inactive State Content: Title and Short Description */}
-                      {!isActive && (
-                        <div className="hidden md:flex flex-col items-center text-center w-full">
-                          <h4 className="text-white font-bold text-lg leading-tight mb-2 line-clamp-2 h-[3.25rem] flex items-center justify-center">
-                            {service.title}
-                          </h4>
-                          <p className="text-gray-400 text-xs w-full line-clamp-4">
-                            {service.description}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Content Area (Only visible when active OR mobile) */}
-                    <motion.div
-                      className={`mt-4 w-full ${isActive ? 'block' : 'hidden md:hidden'}`}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: isActive ? 1 : 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <span className="text-xs font-bold tracking-widest text-cyan-400 uppercase mb-2 block">{service.subtitle}</span>
-                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">{service.title}</h3>
-                      <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-6 line-clamp-4 md:line-clamp-none">
-                        {service.description}
-                      </p>
-
-                      <div className="flex items-center text-cyan-400 font-semibold group cursor-pointer hover:text-cyan-300 transition-colors">
-                        <span className="mr-2 text-sm uppercase tracking-wider">Ver detalles completos</span>
-                        <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                      </div>
-                    </motion.div>
-
-                    {/* Mobile Title when collapsed (though on mobile we probably just show cards stacked) */}
-                    <div className={`md:hidden ${isActive ? 'hidden' : 'block text-center mt-2'}`}>
-                      <h3 className="text-lg font-bold text-white">{service.title}</h3>
+                <div className="p-6 md:p-8 relative z-10">
+                  {/* Icon */}
+                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-white shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <div className="w-7 h-7">
+                      {service.icon}
                     </div>
                   </div>
-                </motion.div>
-              );
-            })}
-          </div>
 
-          {/* Pagination/Indicators */}
-          <div className="flex gap-2 mt-8 md:mt-12 justify-center">
-            {services.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveIndex(idx)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${activeIndex === idx ? 'w-8 bg-cyan-400' : 'bg-gray-600 hover:bg-gray-500'}`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
+                  {/* Subtitle */}
+                  <span className="text-xs font-bold tracking-widest text-cyan-400 uppercase mb-2 block">
+                    {service.subtitle}
+                  </span>
+
+                  {/* Title */}
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
+                    {service.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-400 text-sm leading-relaxed mb-6 line-clamp-3 group-hover:text-gray-300 transition-colors">
+                    {service.description}
+                  </p>
+
+                  {/* CTA */}
+                  <div className="flex items-center text-cyan-400 font-semibold group/cta cursor-pointer hover:text-cyan-300 transition-colors">
+                    <span className="mr-2 text-sm uppercase tracking-wider">Ver más</span>
+                    <svg className="w-5 h-5 group-hover/cta:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className={`absolute -inset-1 bg-gradient-to-r ${service.color} blur-xl opacity-20`} />
+                </div>
+              </motion.div>
             ))}
           </div>
-
         </div>
       </section>
 

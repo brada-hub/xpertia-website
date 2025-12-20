@@ -105,7 +105,7 @@ const Equipo = () => {
               whileHover={{ y: -8 }}
             >
               <motion.div
-                className="w-14 h-14 md:w-20 md:h-20 mx-auto mb-4 md:mb-6 bg-gradient-to-br from-secondary to-accent rounded-full flex items-center justify-center text-lg md:text-2xl font-bold text-white shadow-glow"
+                className="w-14 h-14 md:w-20 md:h-20 mx-auto mb-4 md:mb-6 bg-gradient-to-br from-cyan-500 via-teal-500 to-blue-600 rounded-full flex items-center justify-center text-lg md:text-2xl font-bold text-white shadow-[0_0_25px_rgba(34,211,238,0.4)]"
                 whileHover={{ scale: 1.1, rotate: 5 }}
               >
                 {member.initials}

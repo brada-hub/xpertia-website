@@ -79,7 +79,7 @@ const Diferencial = () => {
                   ease: "easeInOut",
                 }}
               >
-                <div className="w-52 h-52 bg-gradient-to-br from-accent to-secondary rounded-full flex items-center justify-center shadow-glow-lg relative p-1">
+                <div className="w-52 h-52 bg-gradient-to-br from-cyan-500 via-teal-500 to-blue-600 rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(34,211,238,0.5)] relative p-1">
                   <div className="w-full h-full bg-primary rounded-full flex items-center justify-center flex-col border-4 border-transparent">
                     <div className="text-6xl font-bold text-white">360°</div>
                     <div className="text-xs text-gray-400 uppercase tracking-wider font-semibold mt-1">Solución</div>

@@ -86,7 +86,20 @@ const Navbar = () => {
           : 'bg-transparent border-b border-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="absolute top-0 left-0 w-full overflow-hidden h-16 pointer-events-none z-0">
+        <motion.div
+          className="absolute -left-[100px] top-0 will-change-transform"
+          animate={{ x: ['-100vw', '120vw'] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        >
+          <img 
+            src="https://www.gifsanimados.org/data/media/359/santa-claus-y-papa-noel-imagen-animada-0420.gif" 
+            alt="Santa Claus Caminando" 
+            className="h-14 object-contain opacity-90 scale-x-[-1]"
+          />
+        </motion.div>
+      </div>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <motion.a
@@ -95,10 +108,16 @@ const Navbar = () => {
             className={`flex items-center gap-2 text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}
             whileHover={{ scale: 1.05 }}
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-accent to-purple-600 rounded-xl flex items-center justify-center text-white font-heading shadow-glow">
-              X
-            </div>
-            <span className="tracking-tight">XPERTIA</span>
+            <img 
+              src="/logo_ofc.png" 
+              alt="Xpertia Logo" 
+              className="w-10 h-10 object-contain"
+            />
+            <img 
+              src="/xpertia_ofc.png" 
+              alt="Xpertia" 
+              className="h-6 md:h-7 object-contain hidden sm:block"
+            />
           </motion.a>
 
           {/* Desktop Menu */}
@@ -129,7 +148,7 @@ const Navbar = () => {
               onClick={toggleTheme}
               className={`relative w-14 h-7 rounded-full p-1 cursor-pointer transition-all duration-500 ${
                 isDark 
-                  ? 'bg-gradient-to-r from-indigo-900 to-purple-900' 
+                  ? 'bg-gradient-to-r from-blue-900 to-cyan-900' 
                   : 'bg-gradient-to-r from-amber-200 to-orange-300'
               }`}
               whileHover={{ scale: 1.05 }}
@@ -157,7 +176,7 @@ const Navbar = () => {
             <motion.a
               href="#contacto"
               onClick={(e) => handleLinkClick(e, '#contacto')}
-              className="px-6 py-2.5 bg-gradient-to-r from-accent to-purple-600 text-white rounded-full font-semibold text-sm tracking-wide hover:shadow-lg hover:shadow-accent/30 transition-all"
+              className="px-6 py-2.5 bg-gradient-to-r from-cyan-500 via-teal-500 to-blue-600 text-white rounded-full font-semibold text-sm tracking-wide hover:shadow-lg hover:shadow-cyan-500/30 transition-all"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -172,7 +191,7 @@ const Navbar = () => {
               onClick={toggleTheme}
               className={`relative w-12 h-6 rounded-full p-0.5 cursor-pointer transition-all duration-500 ${
                 isDark 
-                  ? 'bg-gradient-to-r from-indigo-900 to-purple-900' 
+                  ? 'bg-gradient-to-r from-blue-900 to-cyan-900' 
                   : 'bg-gradient-to-r from-amber-200 to-orange-300'
               }`}
               whileTap={{ scale: 0.95 }}
@@ -238,7 +257,7 @@ const Navbar = () => {
             <a
               href="#contacto"
               onClick={(e) => handleLinkClick(e, '#contacto')}
-              className="block w-full max-w-xs px-6 py-3 bg-gradient-to-r from-accent to-purple-600 text-white rounded-full font-semibold text-center mt-4"
+              className="block w-full max-w-xs px-6 py-3 bg-gradient-to-r from-cyan-500 via-teal-500 to-blue-600 text-white rounded-full font-semibold text-center mt-4"
             >
               Contacto
             </a>

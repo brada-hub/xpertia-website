@@ -93,7 +93,7 @@ const Pilares = () => {
             >
               <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-accent to-secondary rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-8 shadow-glow group-hover:scale-110 transition-transform duration-300">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-cyan-500 via-teal-500 to-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-8 shadow-[0_0_25px_rgba(34,211,238,0.4)] group-hover:scale-110 transition-transform duration-300">
                 <div className="w-6 h-6 md:w-8 md:h-8 text-white">
                   {pilar.icon}
                 </div>

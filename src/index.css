@@ -134,8 +134,8 @@
   /* Buttons */
   .btn-glow {
     @apply relative overflow-hidden rounded-full font-bold px-8 py-3 transition-all duration-300;
-    background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
-    box-shadow: 0 0 20px var(--shadow-glow);
+    background: linear-gradient(90deg, #06b6d4, #14b8a6, #3b82f6);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
   }
   
   .btn-glow:hover {
@@ -190,7 +190,7 @@
   }
   
   .text-gradient {
-     @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary via-accent to-blue-400;
+     @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-500;
   }
 
   /* Theme Toggle Button */

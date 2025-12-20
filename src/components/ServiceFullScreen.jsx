@@ -406,10 +406,16 @@ const ServiceFullScreen = ({ isOpen, onClose, service }) => {
           <nav className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-lg border-b border-white/10">
             <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-cyan-500/30">
-                  X
-                </div>
-                <span className="text-2xl font-bold text-white tracking-tight">XPERTIA</span>
+                <img 
+                  src="/logo_ofc.png" 
+                  alt="Xpertia Logo" 
+                  className="w-10 h-10 object-contain"
+                />
+                <img 
+                  src="/xpertia_ofc.png" 
+                  alt="Xpertia" 
+                  className="h-6 object-contain hidden sm:block"
+                />
               </div>
               <div className="flex items-center gap-4">
                 <motion.button
@@ -426,7 +432,7 @@ const ServiceFullScreen = ({ isOpen, onClose, service }) => {
                 <motion.a
                   href="#contacto"
                   onClick={onClose}
-                  className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-cyan-500/30 transition-all"
+                  className="px-6 py-2 bg-gradient-to-r from-cyan-500 via-teal-500 to-blue-600 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-cyan-500/30 transition-all"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -464,7 +470,7 @@ const ServiceFullScreen = ({ isOpen, onClose, service }) => {
                 viewport={{ once: true }}
               >
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                  ¿Por qué necesitas <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">este servicio</span>?
+                  ¿Por qué necesitas <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">este servicio</span>?
                 </h2>
                 <p className="text-lg text-gray-300 leading-relaxed">
                   {data.intro}
@@ -491,7 +497,7 @@ const ServiceFullScreen = ({ isOpen, onClose, service }) => {
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ y: -5 }}
                   >
-                    <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-cyan-500/30 group-hover:scale-110 transition-transform">
+                    <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 via-teal-500 to-blue-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-cyan-500/30 group-hover:scale-110 transition-transform">
                       {servicio.icon}
                     </div>
                     <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors mb-4">
@@ -555,7 +561,7 @@ const ServiceFullScreen = ({ isOpen, onClose, service }) => {
                   const event = new CustomEvent('prefill-contact', { detail: { service } });
                   window.dispatchEvent(event);
                 }}
-                className="inline-block px-10 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-full font-bold text-lg shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 transition-all"
+                className="inline-block px-10 py-4 bg-gradient-to-r from-cyan-500 via-teal-500 to-blue-600 text-white rounded-full font-bold text-lg shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 transition-all cursor-pointer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
