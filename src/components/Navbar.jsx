@@ -6,6 +6,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const { theme, toggleTheme, isDark } = useTheme();
 
   useEffect(() => {
@@ -37,7 +38,20 @@ const Navbar = () => {
   const navLinks = [
     { href: '#hero', label: 'Inicio', id: 'hero' },
     { href: '#pilares', label: 'Pilares', id: 'pilares' },
-    { href: '#servicios', label: 'Servicios', id: 'servicios' },
+    { 
+      href: '#servicios', 
+      label: 'Servicios', 
+      id: 'servicios',
+      hasDropdown: true,
+      subItems: [
+        { label: 'Consultoría Estratégica', service: 'consultoria' },
+        { label: 'Desarrollo de Software', service: 'desarrollo' },
+        { label: 'Inteligencia Artificial', service: 'ia' },
+        { label: 'Marketing Digital', service: 'marketing' },
+        { label: 'Redes y Ciberseguridad', service: 'redes' },
+        { label: 'UX/UI y Plataformas', service: 'diseno' }
+      ]
+    },
     { href: '#proceso', label: 'Proceso', id: 'proceso' },
     { href: '#equipo', label: 'Equipo', id: 'equipo' },
   ];
@@ -123,24 +137,80 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link, index) => (
-              <motion.a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
-                className={`font-medium hover:text-accent transition-colors relative group text-sm uppercase tracking-wide ${
-                  activeSection === link.id 
-                    ? 'text-accent' 
-                    : isDark ? 'text-gray-300' : 'text-gray-600'
-                }`}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                {link.label}
-                <span className={`absolute -bottom-1 left-0 h-0.5 bg-accent transition-all shadow-[0_0_10px_var(--color-accent)] ${
-                  activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'
-                }`} />
-              </motion.a>
+              link.hasDropdown ? (
+                <div 
+                  key={link.href}
+                  className="relative group"
+                  onMouseEnter={() => setServicesDropdownOpen(true)}
+                  onMouseLeave={() => setServicesDropdownOpen(false)}
+                >
+                  <motion.a
+                    href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                    className={`font-medium hover:text-accent transition-colors relative text-sm uppercase tracking-wide ${
+                      activeSection === link.id 
+                        ? 'text-accent' 
+                        : isDark ? 'text-gray-300' : 'text-gray-600'
+                    }`}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    {link.label}
+                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-accent transition-all shadow-[0_0_10px_var(--color-accent)] ${
+                      activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`} />
+                  </motion.a>
+                  
+                  {/* Dropdown */}
+                  <div className={`absolute top-full left-0 mt-2 w-64 rounded-xl border shadow-xl transition-all duration-200 z-50 ${
+                    isDark 
+                      ? 'bg-primary-light/95 border-white/10' 
+                      : 'bg-white/95 border-gray-200'
+                  } backdrop-blur-xl ${
+                    servicesDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                  }`}>
+                    <div className="py-2">
+                      {link.subItems.map((item) => (
+                        <button
+                          key={item.service}
+                          onClick={() => {
+                            const event = new CustomEvent('open-service-modal', { detail: { service: item.service } });
+                            window.dispatchEvent(event);
+                            setServicesDropdownOpen(false);
+                          }}
+                          className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
+                            isDark 
+                              ? 'text-gray-300 hover:bg-white/5 hover:text-accent' 
+                              : 'text-gray-700 hover:bg-gray-100 hover:text-accent'
+                          }`}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                  className={`font-medium hover:text-accent transition-colors relative group text-sm uppercase tracking-wide ${
+                    activeSection === link.id 
+                      ? 'text-accent' 
+                      : isDark ? 'text-gray-300' : 'text-gray-600'
+                  }`}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  {link.label}
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-accent transition-all shadow-[0_0_10px_var(--color-accent)] ${
+                    activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`} />
+                </motion.a>
+              )
             ))}
             
             {/* Theme Toggle Switch */}

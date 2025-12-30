@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
+import { submitContact } from '../utils/api';
 
 const Contacto = () => {
   const { isDark } = useTheme();
@@ -74,27 +75,30 @@ const Contacto = () => {
 
     setIsSubmitting(true);
 
-    // Simular envío (aquí integrarías tu backend o servicio de email)
+    // Send to backend API
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const response = await submitContact(formData);
 
-      console.log('Formulario enviado:', formData);
+      if (response.success) {
+        setSubmitMessage(response.message);
+        setFormData({
+          name: '',
+          email: '',
+          service: 'consultoria',
+          message: '',
+        });
+        setErrors({});
 
-      setSubmitMessage('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
-      setFormData({
-        name: '',
-        email: '',
-        service: 'General',
-        message: '',
-      });
-      setErrors({});
-
-      // Limpiar mensaje después de 5 segundos
-      setTimeout(() => {
-        setSubmitMessage('');
-      }, 5000);
+        // Limpiar mensaje después de 5 segundos
+        setTimeout(() => {
+          setSubmitMessage('');
+        }, 5000);
+      } else {
+        setSubmitMessage(response.message || 'Hubo un error al enviar el mensaje. Por favor intenta de nuevo.');
+      }
 
     } catch (error) {
+      console.error('Error submitting contact:', error);
       setSubmitMessage('Hubo un error al enviar el mensaje. Por favor intenta de nuevo.');
     } finally {
       setIsSubmitting(false);

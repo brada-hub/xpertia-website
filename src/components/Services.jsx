@@ -62,7 +62,7 @@ const services = [
           d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.131A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.2-2.85.564-4.14C5.7 4.295 8.656 2.373 12.062 2.373a9.8 9.8 0 014.288.98M9 4.868L6.012 3m0 0l2.988 1.868" />
       </svg>
     ),
-    title: 'Ciberseguridad',
+    title: 'Redes y Ciberseguridad',
     subtitle: 'Protección Total',
     description: 'Protección integral para tu ecosistema digital. Desplegamos estrategias de defensa en profundidad, desde pruebas de penetración y auditorías de seguridad hasta la implementación de centros de operaciones de seguridad y respuesta a incidentes en tiempo real.',
     color: 'from-cyan-500 via-teal-500 to-blue-600'
@@ -74,7 +74,7 @@ const services = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
       </svg>
     ),
-    title: 'UX/UI & Plataformas',
+    title: 'Diseño Web & Plataformas',
     subtitle: 'Experiencias Científicas',
     description: 'Diseño centrado en el humano que cautiva y convierte. Creamos experiencias digitales intuitivas y sistemas de gestión de contenido (CMS) optimizados, especializándonos también en plataformas académicas y revistas científicas de alto impacto.',
     color: 'from-cyan-500 via-teal-500 to-blue-600'
@@ -87,7 +87,18 @@ const Services = () => {
 
   const [fullscreenOpen, setFullscreenOpen] = useState(false);
   const [selectedServiceId, setSelectedServiceId] = useState(null);
-  const [activeIndex, setActiveIndex] = useState(1); // Start focused on the second item or purely center
+  const [activeIndex, setActiveIndex] = useState(1);
+
+  // Event listener para abrir modal desde dropdown del navbar
+  useEffect(() => {
+    const handleOpenServiceModal = (e) => {
+      setSelectedServiceId(e.detail.service);
+      setFullscreenOpen(true);
+    };
+    
+    window.addEventListener('open-service-modal', handleOpenServiceModal);
+    return () => window.removeEventListener('open-service-modal', handleOpenServiceModal);
+  }, []); // Start focused on the second item or purely center
 
   const handleCardClick = (index, id) => {
     if (activeIndex === index) {
