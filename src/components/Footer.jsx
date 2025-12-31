@@ -14,18 +14,18 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <img 
-              src="/logo_ofc.png" 
-              alt="Xpertia Logo" 
+            <img
+              src="/logo_ofc.png"
+              alt="Xpertia Logo"
               className="w-10 h-10 object-contain"
             />
-            <img 
-              src="/xpertia_ofc.png" 
-              alt="Xpertia" 
-              className="h-6 object-contain"
+            <img
+              src="/xpertia_ofc.png"
+              alt="Xpertia"
+              className="h-8 object-contain"
             />
           </motion.div>
-          
+
           <motion.p
             className={`mb-2 font-medium ${isDark ? 'text-white/90' : 'text-slate-700'}`}
             initial={{ opacity: 0 }}
@@ -43,9 +43,9 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.25 }}
           >
-           
+
           </motion.p>
-          
+
           <motion.p
             className={`text-sm ${isDark ? 'text-white/40' : 'text-slate-400'}`}
             initial={{ opacity: 0 }}
@@ -53,7 +53,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            © 2025 Xpertia. Todos los derechos reservados.
+            © 2025 XpertIA+. Todos los derechos reservados.
           </motion.p>
         </div>
       </div>

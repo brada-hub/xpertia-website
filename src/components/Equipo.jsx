@@ -11,7 +11,7 @@ const Equipo = () => {
       initials: 'JC',
       name: 'Ing. Jose James Claure Ricaldi',
       role: 'Director de Estrategia y Consultoría (CEO)',
-      description: 'Lidera la visión de Xpertia, sirviendo como el principal Asesor Informático en Negocios. Su enfoque es alinear estratégicamente la tecnología con los objetivos de crecimiento del cliente.',
+      description: 'Lidera la visión de XpertIA+, sirviendo como el principal Asesor Informático en Negocios. Su enfoque es alinear estratégicamente la tecnología con los objetivos de crecimiento del cliente.',
     },
     {
       initials: 'AC',
@@ -83,10 +83,10 @@ const Equipo = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-3 md:mb-4">
-            La Experiencia Detrás de <span className="text-gradient">Xpertia</span>
+            La Experiencia Detrás de <span className="text-gradient">XpertIA+</span>
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-4xl mx-auto">
-            En Xpertia, la experiencia es la base de cada solución. Nuestro equipo multidisciplinario combina la
+            En XpertIA+, la experiencia es la base de cada solución. Nuestro equipo multidisciplinario combina la
             visión estratégica con la maestría técnica para impulsar su transformación digital.
           </p>
         </motion.div>

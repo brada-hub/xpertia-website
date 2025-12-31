@@ -49,7 +49,7 @@ const AdminLogin = () => {
                     <h1 className="text-4xl font-bold text-white mb-2">
                         Panel de <span className="text-gradient">Administración</span>
                     </h1>
-                    <p className="text-gray-400">Xpertia - Gestión de Contactos</p>
+                    <p className="text-gray-400">XpertIA+ - Gestión de Contactos</p>
                 </div>
 
                 <div className="bg-primary-light p-8 rounded-2xl border border-white/5 shadow-2xl">

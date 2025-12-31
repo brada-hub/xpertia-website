@@ -127,19 +127,19 @@ const ServiceFullScreen = ({ isOpen, onClose, service }) => {
   // Tracking de scroll para actualizar sección activa
   useEffect(() => {
     if (!isOpen) return;
-    
+
     const handleScroll = (e) => {
       const scrollContainer = e.currentTarget;
       const scrollPosition = scrollContainer.scrollTop + 300;
-      
+
       const sections = ['cta', 'beneficios', 'servicios', 'intro', 'hero'];
-      
+
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId);
         if (element) {
           const rect = element.getBoundingClientRect();
           const absoluteTop = scrollContainer.scrollTop + rect.top;
-          
+
           if (scrollPosition >= absoluteTop) {
             setActiveSection(sectionId);
             break;
@@ -147,7 +147,7 @@ const ServiceFullScreen = ({ isOpen, onClose, service }) => {
         }
       }
     };
-    
+
     const modalContent = document.getElementById('service-modal');
     if (modalContent) {
       modalContent.addEventListener('scroll', handleScroll);
@@ -410,7 +410,7 @@ const ServiceFullScreen = ({ isOpen, onClose, service }) => {
     }
   };
 
-  
+
   // Mapeo de imágenes por servicio
   const serviceImages = {
     consultoria: '/images/services/consultoria.png',
@@ -485,38 +485,38 @@ const ServiceFullScreen = ({ isOpen, onClose, service }) => {
           >
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/20 via-transparent to-transparent pointer-events-none" />
             <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-              <motion.div
-                className="text-center md:text-left"
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                  {data.title}
-                </h1>
-                <p className="text-xl md:text-2xl text-gray-300">
-                  {data.description}
-                </p>
-              </motion.div>
-              
-              <motion.div
-                className="relative"
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-cyan-500/20">
-                  <img 
-                    src={serviceImages[service]} 
-                    alt={data.title}
-                    className="w-full h-auto object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 to-transparent pointer-events-none" />
-                </div>
-              </motion.div>
+              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <motion.div
+                  className="text-center md:text-left"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                    {data.title}
+                  </h1>
+                  <p className="text-xl md:text-2xl text-gray-300">
+                    {data.description}
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  className="relative"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                  <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-cyan-500/20">
+                    <img
+                      src={serviceImages[service]}
+                      alt={data.title}
+                      className="w-full h-auto object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 to-transparent pointer-events-none" />
+                  </div>
+                </motion.div>
+              </div>
             </div>
-          </div>
           </motion.section>
 
           {/* Descripción General */}
@@ -630,8 +630,8 @@ const ServiceFullScreen = ({ isOpen, onClose, service }) => {
           </section>
 
           {/* Footer */}
-          
-          <ScrollIndicator 
+
+          <ScrollIndicator
             activeSection={activeSection}
             onSectionClick={(sectionId) => {
               const element = document.getElementById(sectionId);
@@ -644,7 +644,7 @@ const ServiceFullScreen = ({ isOpen, onClose, service }) => {
 
           <footer className="bg-slate-950 py-12 border-t border-white/5">
             <div className="max-w-7xl mx-auto px-6 text-center">
-              <p className="text-gray-500">© 2024 Xpertia. Todos los derechos reservados.</p>
+              <p className="text-gray-500">© 2024 XpertIA+. Todos los derechos reservados.</p>
             </div>
           </footer>
         </motion.div>

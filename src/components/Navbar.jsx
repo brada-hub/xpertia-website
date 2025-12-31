@@ -22,7 +22,7 @@ const Navbar = () => {
         if (element) {
           const offsetTop = element.offsetTop;
           const offsetHeight = element.offsetHeight;
-          
+
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
             break;
@@ -38,9 +38,9 @@ const Navbar = () => {
   const navLinks = [
     { href: '#hero', label: 'Inicio', id: 'hero' },
     { href: '#pilares', label: 'Pilares', id: 'pilares' },
-    { 
-      href: '#servicios', 
-      label: 'Servicios', 
+    {
+      href: '#servicios',
+      label: 'Servicios',
       id: 'servicios',
       hasDropdown: true,
       subItems: [
@@ -58,13 +58,13 @@ const Navbar = () => {
 
   const handleLinkClick = (e, href) => {
     e.preventDefault();
-    
+
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
-    
+
     // Cerrar menú móvil primero
     setIsMobileMenuOpen(false);
-    
+
     // Delay para permitir que el menú cierre antes de hacer scroll
     setTimeout(() => {
       if (element) {
@@ -94,11 +94,10 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? `${isDark ? 'bg-primary/90' : 'bg-white/90'} backdrop-blur-lg border-b ${isDark ? 'border-white/10' : 'border-gray-200'} shadow-lg`
-          : 'bg-transparent border-b border-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        ? `${isDark ? 'bg-primary/90' : 'bg-white/90'} backdrop-blur-lg border-b ${isDark ? 'border-white/10' : 'border-gray-200'} shadow-lg`
+        : 'bg-transparent border-b border-transparent'
+        }`}
     >
       <div className="absolute top-0 left-0 w-full overflow-hidden h-16 pointer-events-none z-0">
         <motion.div
@@ -106,9 +105,9 @@ const Navbar = () => {
           animate={{ x: ['-100vw', '120vw'] }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         >
-          <img 
-            src="https://www.gifsanimados.org/data/media/359/santa-claus-y-papa-noel-imagen-animada-0420.gif" 
-            alt="Santa Claus Caminando" 
+          <img
+            src="https://www.gifsanimados.org/data/media/359/santa-claus-y-papa-noel-imagen-animada-0420.gif"
+            alt="Santa Claus Caminando"
             className="h-14 object-contain opacity-90 scale-x-[-1]"
           />
         </motion.div>
@@ -122,15 +121,15 @@ const Navbar = () => {
             className={`flex items-center gap-2 text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}
             whileHover={{ scale: 1.05 }}
           >
-            <img 
-              src="/logo_ofc.png" 
-              alt="Xpertia Logo" 
-              className="w-10 h-10 object-contain"
+            <img
+              src="/logo_ofc.png"
+              alt="Xpertia Logo"
+              className="w-12 h-12 object-contain"
             />
-            <img 
-              src="/xpertia_ofc.png" 
-              alt="Xpertia" 
-              className="h-6 md:h-7 object-contain hidden sm:block"
+            <img
+              src="/xpertia_ofc.png"
+              alt="Xpertia"
+              className="h-12 md:h-10 object-contain hidden sm:block"
             />
           </motion.a>
 
@@ -138,7 +137,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link, index) => (
               link.hasDropdown ? (
-                <div 
+                <div
                   key={link.href}
                   className="relative group"
                   onMouseEnter={() => setServicesDropdownOpen(true)}
@@ -147,29 +146,25 @@ const Navbar = () => {
                   <motion.a
                     href={link.href}
                     onClick={(e) => handleLinkClick(e, link.href)}
-                    className={`font-medium hover:text-accent transition-colors relative text-sm uppercase tracking-wide ${
-                      activeSection === link.id 
-                        ? 'text-accent' 
-                        : isDark ? 'text-gray-300' : 'text-gray-600'
-                    }`}
+                    className={`font-medium hover:text-accent transition-colors relative text-sm uppercase tracking-wide ${activeSection === link.id
+                      ? 'text-accent'
+                      : isDark ? 'text-gray-300' : 'text-gray-600'
+                      }`}
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
                     {link.label}
-                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-accent transition-all shadow-[0_0_10px_var(--color-accent)] ${
-                      activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'
-                    }`} />
+                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-accent transition-all shadow-[0_0_10px_var(--color-accent)] ${activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'
+                      }`} />
                   </motion.a>
-                  
+
                   {/* Dropdown */}
-                  <div className={`absolute top-full left-0 mt-2 w-64 rounded-xl border shadow-xl transition-all duration-200 z-50 ${
-                    isDark 
-                      ? 'bg-primary-light/95 border-white/10' 
-                      : 'bg-white/95 border-gray-200'
-                  } backdrop-blur-xl ${
-                    servicesDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-                  }`}>
+                  <div className={`absolute top-full left-0 mt-2 w-64 rounded-xl border shadow-xl transition-all duration-200 z-50 ${isDark
+                    ? 'bg-primary-light/95 border-white/10'
+                    : 'bg-white/95 border-gray-200'
+                    } backdrop-blur-xl ${servicesDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                    }`}>
                     <div className="py-2">
                       {link.subItems.map((item) => (
                         <button
@@ -179,11 +174,10 @@ const Navbar = () => {
                             window.dispatchEvent(event);
                             setServicesDropdownOpen(false);
                           }}
-                          className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
-                            isDark 
-                              ? 'text-gray-300 hover:bg-white/5 hover:text-accent' 
-                              : 'text-gray-700 hover:bg-gray-100 hover:text-accent'
-                          }`}
+                          className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${isDark
+                            ? 'text-gray-300 hover:bg-white/5 hover:text-accent'
+                            : 'text-gray-700 hover:bg-gray-100 hover:text-accent'
+                            }`}
                         >
                           {item.label}
                         </button>
@@ -196,46 +190,42 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className={`font-medium hover:text-accent transition-colors relative group text-sm uppercase tracking-wide ${
-                    activeSection === link.id 
-                      ? 'text-accent' 
-                      : isDark ? 'text-gray-300' : 'text-gray-600'
-                  }`}
+                  className={`font-medium hover:text-accent transition-colors relative group text-sm uppercase tracking-wide ${activeSection === link.id
+                    ? 'text-accent'
+                    : isDark ? 'text-gray-300' : 'text-gray-600'
+                    }`}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
                   {link.label}
-                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-accent transition-all shadow-[0_0_10px_var(--color-accent)] ${
-                    activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'
-                  }`} />
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-accent transition-all shadow-[0_0_10px_var(--color-accent)] ${activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`} />
                 </motion.a>
               )
             ))}
-            
+
             {/* Theme Toggle Switch */}
             <motion.button
               onClick={toggleTheme}
-              className={`relative w-14 h-7 rounded-full p-1 cursor-pointer transition-all duration-500 ${
-                isDark 
-                  ? 'bg-gradient-to-r from-blue-900 to-cyan-900' 
-                  : 'bg-gradient-to-r from-amber-200 to-orange-300'
-              }`}
+              className={`relative w-14 h-7 rounded-full p-1 cursor-pointer transition-all duration-500 ${isDark
+                ? 'bg-gradient-to-r from-blue-900 to-cyan-900'
+                : 'bg-gradient-to-r from-amber-200 to-orange-300'
+                }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               title={isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
             >
               <motion.div
-                className={`w-5 h-5 rounded-full flex items-center justify-center transition-colors duration-500 ${
-                  isDark 
-                    ? 'bg-indigo-400' 
-                    : 'bg-amber-500'
-                }`}
+                className={`w-5 h-5 rounded-full flex items-center justify-center transition-colors duration-500 ${isDark
+                  ? 'bg-indigo-400'
+                  : 'bg-amber-500'
+                  }`}
                 animate={{ x: isDark ? 0 : 28 }}
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 style={{
-                  boxShadow: isDark 
-                    ? '0 0 10px rgba(129, 140, 248, 0.6)' 
+                  boxShadow: isDark
+                    ? '0 0 10px rgba(129, 140, 248, 0.6)'
                     : '0 0 15px rgba(251, 191, 36, 0.8)'
                 }}
               >
@@ -259,22 +249,20 @@ const Navbar = () => {
             {/* Theme Toggle for Mobile */}
             <motion.button
               onClick={toggleTheme}
-              className={`relative w-12 h-6 rounded-full p-0.5 cursor-pointer transition-all duration-500 ${
-                isDark 
-                  ? 'bg-gradient-to-r from-blue-900 to-cyan-900' 
-                  : 'bg-gradient-to-r from-amber-200 to-orange-300'
-              }`}
+              className={`relative w-12 h-6 rounded-full p-0.5 cursor-pointer transition-all duration-500 ${isDark
+                ? 'bg-gradient-to-r from-blue-900 to-cyan-900'
+                : 'bg-gradient-to-r from-amber-200 to-orange-300'
+                }`}
               whileTap={{ scale: 0.95 }}
             >
               <motion.div
-                className={`w-5 h-5 rounded-full flex items-center justify-center ${
-                  isDark ? 'bg-indigo-400' : 'bg-amber-500'
-                }`}
+                className={`w-5 h-5 rounded-full flex items-center justify-center ${isDark ? 'bg-indigo-400' : 'bg-amber-500'
+                  }`}
                 animate={{ x: isDark ? 0 : 24 }}
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 style={{
-                  boxShadow: isDark 
-                    ? '0 0 8px rgba(129, 140, 248, 0.6)' 
+                  boxShadow: isDark
+                    ? '0 0 8px rgba(129, 140, 248, 0.6)'
                     : '0 0 10px rgba(251, 191, 36, 0.8)'
                 }}
               >
@@ -315,11 +303,10 @@ const Navbar = () => {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className={`block font-medium hover:text-accent transition-colors text-lg ${
-                  activeSection === link.id 
-                    ? 'text-accent' 
-                    : isDark ? 'text-gray-300' : 'text-gray-600'
-                }`}
+                className={`block font-medium hover:text-accent transition-colors text-lg ${activeSection === link.id
+                  ? 'text-accent'
+                  : isDark ? 'text-gray-300' : 'text-gray-600'
+                  }`}
               >
                 {link.label}
               </a>

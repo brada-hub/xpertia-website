@@ -159,6 +159,12 @@ const ClientsManagement = () => {
                                 Personal
                             </button>
                             <button
+                                onClick={() => navigate('/')}
+                                className="px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all font-medium"
+                            >
+                                Ver Sitio Web
+                            </button>
+                            <button
                                 onClick={async () => {
                                     await adminLogout();
                                     navigate('/admin/login');

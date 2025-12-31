@@ -24,11 +24,11 @@ const Diferencial = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
-            La Ventaja Xpertia: <span className="text-gradient">Integración Total</span>
+            La Ventaja XpertIA+: <span className="text-gradient">Integración Total</span>
           </h2>
           <p className="text-lg text-gray-300 leading-relaxed mb-4">
-            A diferencia de consultoras especializadas en un solo campo, <strong>Xpertia ofrece una solución
-            integral</strong>. Nuestro equipo multidisciplinario domina el espectro completo: desarrollo de
+            A diferencia de consultoras especializadas en un solo campo, <strong>XpertIA+ ofrece una solución
+              integral</strong>. Nuestro equipo multidisciplinario domina el espectro completo: desarrollo de
             software, infraestructura de red, ciberseguridad e inteligencia artificial.
           </p>
           <p className="text-2xl text-accent font-semibold mt-8">
@@ -84,7 +84,7 @@ const Diferencial = () => {
                     <div className="text-6xl font-bold text-white">360°</div>
                     <div className="text-xs text-gray-400 uppercase tracking-wider font-semibold mt-1">Solución</div>
                   </div>
-                  
+
                   {/* Orbiting dots */}
                   <motion.div
                     className="absolute w-4 h-4 bg-accent rounded-full shadow-[0_0_10px_var(--color-accent)]"
