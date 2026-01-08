@@ -17,11 +17,12 @@ class Project {
      * Create a new project
      */
     public function create($data) {
-        $sql = "INSERT INTO projects (name, description, client_id, status, start_date, end_date, budget, observations) 
-                VALUES (:name, :description, :client_id, :status, :start_date, :end_date, :budget, :observations)";
+        $sql = "INSERT INTO projects (name, type, description, client_id, status, start_date, end_date, budget, observations) 
+                VALUES (:name, :type, :description, :client_id, :status, :start_date, :end_date, :budget, :observations)";
         
         $params = [
             ':name' => $data['name'],
+            ':type' => $data['type'] ?? 'Desarrollo',
             ':description' => $data['description'],
             ':client_id' => $data['client_id'],
             ':status' => $data['status'] ?? 'planning',
@@ -134,6 +135,7 @@ class Project {
     public function update($id, $data) {
         $sql = "UPDATE projects SET 
                 name = :name,
+                type = :type,
                 description = :description,
                 client_id = :client_id,
                 status = :status,
@@ -147,6 +149,7 @@ class Project {
         $params = [
             ':id' => $id,
             ':name' => $data['name'],
+            ':type' => $data['type'],
             ':description' => $data['description'],
             ':client_id' => $data['client_id'],
             ':status' => $data['status'],
@@ -156,8 +159,8 @@ class Project {
             ':observations' => $data['observations'] ?? null
         ];
         
-        $this->db->execute($sql, $params);
-        return $this->db->getConnection()->rowCount() > 0;
+        $stmt = $this->db->execute($sql, $params);
+        return $stmt->rowCount() > 0;
     }
     
     /**
@@ -166,8 +169,8 @@ class Project {
     public function delete($id) {
         // Personnel assignments will be deleted automatically (CASCADE)
         $sql = "DELETE FROM projects WHERE id = :id";
-        $this->db->execute($sql, [':id' => $id]);
-        return $this->db->getConnection()->rowCount() > 0;
+        $stmt = $this->db->execute($sql, [':id' => $id]);
+        return $stmt->rowCount() > 0;
     }
     
     /**
@@ -194,12 +197,12 @@ class Project {
         $sql = "DELETE FROM project_personnel 
                 WHERE project_id = :project_id AND personnel_id = :personnel_id";
         
-        $this->db->execute($sql, [
+        $stmt = $this->db->execute($sql, [
             ':project_id' => $projectId,
             ':personnel_id' => $personnelId
         ]);
         
-        return $this->db->getConnection()->rowCount() > 0;
+        return $stmt->rowCount() > 0;
     }
     
     /**

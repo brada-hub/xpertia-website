@@ -11,11 +11,11 @@ const Hero = () => {
   const y2 = useTransform(scrollY, [0, 500], [0, -100]);
 
   return (
-    <section ref={containerRef} id="hero" className="relative h-screen flex items-center overflow-hidden bg-primary pt-20">
+    <section ref={containerRef} id="hero" className="relative min-h-screen flex items-center overflow-hidden pt-28 pb-20">
       {/* Background decor */}
       <div className={`absolute inset-0 opacity-20 ${isDark ? 'bg-pattern-dark' : 'bg-pattern-light'}`} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full h-full flex items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex items-center">
         <div className="grid lg:grid-cols-[1fr_1.2fr] gap-20 items-center w-full">
 
           {/* Columna Izquierda: Slogan y Descripción */}
@@ -113,38 +113,7 @@ const Hero = () => {
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-slate-900 rounded-b-xl" />
             </motion.div>
 
-            {/* 🎄 Gorrito de Navidad - Imagen PNG */}
-            <motion.div
-              style={{ y: y2 }}
-              className="absolute z-30 bottom-[400px] left-[80px] xl:left-[70px]"
-              initial={{ opacity: 0, scale: 0, rotate: 0 }}
-              animate={{ opacity: 1, scale: 1, rotate: 15 }}
-              transition={{ duration: 0.8, delay: 1.2, type: 'spring' }}
-            >
-              <img
-                src="/gorrox.png"
-                alt="Gorrito Navidad"
-                className="w-28 h-28 xl:w-36 xl:h-36 object-contain drop-shadow-xl"
-                style={{ filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.3))' }}
-              />
-            </motion.div>
-            {/*gorrito de la tablet*/}
-            <motion.div
-              style={{ y: y1 }}
-              className="absolute z-10 bottom-[450px] right-[30px] xl:right-[-100px] xl:top-[10px] xl:bottom-auto pointer-events-none"
-              initial={{ opacity: 0, scale: 0, rotate: 0 }}
-              animate={{ opacity: 1, scale: 1, rotate: -15 }}
-              transition={{ duration: 0.8, delay: 1.4, type: 'spring' }}
-            >
-              <img
-                src="/gorrox.png"
-                alt="Gorrito Navidad Tablet"
-                className="w-40 h-40 xl:w-64 xl:h-64 object-contain drop-shadow-2xl"
-                style={{ filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.3))' }}
-              />
-            </motion.div>
             {/* ⭐ Estrella Burst Gigante - 24 Puntas Afiladas */}
-
 
             {/* Floating UI Elements adicionales para más "vidilla" */}
 

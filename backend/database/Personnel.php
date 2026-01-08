@@ -147,8 +147,8 @@ class Personnel {
             ':status' => $data['status']
         ];
         
-        $this->db->execute($sql, $params);
-        return $this->db->getConnection()->rowCount() > 0;
+        $stmt = $this->db->execute($sql, $params);
+        return $stmt->rowCount() > 0;
     }
     
     /**
@@ -164,8 +164,8 @@ class Personnel {
         }
         
         $sql = "DELETE FROM personnel WHERE id = :id";
-        $this->db->execute($sql, [':id' => $id]);
-        return $this->db->getConnection()->rowCount() > 0;
+        $stmt = $this->db->execute($sql, [':id' => $id]);
+        return $stmt->rowCount() > 0;
     }
     
     /**

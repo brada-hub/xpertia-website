@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Pilares from './components/Pilares';
@@ -10,13 +10,14 @@ import Contacto from './components/Contacto';
 import Footer from './components/Footer';
 import AnimatedBackground from './components/AnimatedBackground';
 import SocialSidebar from './components/SocialSidebar';
-import Snowfall from './components/Snowfall';
+import CarnivalAnimation from './components/CarnivalAnimation';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import ProjectsDashboard from './pages/ProjectsDashboard';
 import ClientsManagement from './pages/ClientsManagement';
 import PersonnelManagement from './pages/PersonnelManagement';
 import ProtectedRoute from './components/admin/ProtectedRoute';
+import AdminLayout from './components/admin/AdminLayout';
 import { useTheme } from './context/ThemeContext';
 
 // Main website component
@@ -29,7 +30,7 @@ function MainWebsite() {
       : 'bg-slate-50 text-gray-900'
       } selection:bg-accent selection:text-white relative`}>
       <AnimatedBackground />
-      <Snowfall />
+      <CarnivalAnimation />
       <SocialSidebar />
       <div className="relative z-10 font-sans">
         <Navbar />
@@ -47,7 +48,7 @@ function MainWebsite() {
 
           <Diferencial />
 
-          <div className={`h-[2px] w-full ${isDark ? 'bg-slate-950' : 'bg-slate-200'}`} />
+          <div className={`h-[2px] w-full ${isDark ? 'bg-white/5' : 'bg-black/5'}`} />
 
           <Services />
 
@@ -59,7 +60,7 @@ function MainWebsite() {
 
           <Equipo />
 
-          <div className={isDark ? 'bg-slate-950' : 'bg-slate-200/50'}>
+          <div className={isDark ? 'bg-white/[0.02]' : 'bg-black/[0.02]'}>
             <Contacto />
           </div>
         </main>
@@ -74,39 +75,26 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainWebsite />} />
+        <Route path="/dashboard" element={<Navigate to="/admin/dashboard" replace />} />
         <Route path="/admin/login" element={<AdminLogin />} />
+        
+        {/* Protected Admin Routes */}
         <Route
-          path="/admin/dashboard"
+          path="/admin"
           element={
             <ProtectedRoute>
-              <AdminDashboard />
+              <AdminLayout />
             </ProtectedRoute>
           }
-        />
-        <Route
-          path="/admin/projects"
-          element={
-            <ProtectedRoute>
-              <ProjectsDashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin/clients"
-          element={
-            <ProtectedRoute>
-              <ClientsManagement />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin/personnel"
-          element={
-            <ProtectedRoute>
-              <PersonnelManagement />
-            </ProtectedRoute>
-          }
-        />
+        >
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="projects" element={<ProjectsDashboard />} />
+          <Route path="clients" element={<ClientsManagement />} />
+          <Route path="personnel" element={<PersonnelManagement />} />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );

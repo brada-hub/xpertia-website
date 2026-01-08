@@ -102,22 +102,23 @@ Abre DevTools (F12) → Console y ejecuta:
 
 ```javascript
 // Probar envío de contacto
-fetch('http://localhost/xpertia-website/backend/api/contacts.php', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
+fetch("http://localhost/xpertia-react/backend/api/contacts.php", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    name: 'Test',
-    email: 'test@test.com',
-    service: 'consultoria',
-    message: 'Mensaje de prueba desde consola'
-  })
+    name: "Test",
+    email: "test@test.com",
+    service: "consultoria",
+    message: "Mensaje de prueba desde consola",
+  }),
 })
-.then(r => r.json())
-.then(data => console.log('✅ Respuesta:', data))
-.catch(err => console.error('❌ Error:', err));
+  .then((r) => r.json())
+  .then((data) => console.log("✅ Respuesta:", data))
+  .catch((err) => console.error("❌ Error:", err));
 ```
 
 **Resultado esperado:**
+
 ```json
 {
   "success": true,
@@ -143,6 +144,7 @@ fetch('http://localhost/xpertia-website/backend/api/contacts.php', {
 Si todos los pasos funcionan correctamente, el sistema está completamente operativo. 🎉
 
 **Accesos rápidos:**
+
 - Sitio web: `http://localhost:5173`
 - Admin login: `http://localhost:5173/admin/login`
 - Dashboard: `http://localhost:5173/admin/dashboard`

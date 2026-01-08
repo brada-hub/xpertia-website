@@ -111,7 +111,7 @@ const Services = () => {
 
   return (
     <>
-      <section ref={sectionRef} id="servicios" className="relative py-12 sm:py-16 md:py-24 lg:py-32 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 overflow-hidden min-h-screen flex flex-col justify-center">
+      <section ref={sectionRef} id="servicios" className="relative py-12 sm:py-16 md:py-24 lg:py-32 bg-transparent overflow-hidden min-h-screen flex flex-col justify-center">
         {/* Background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/10 via-transparent to-transparent pointer-events-none" />
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />

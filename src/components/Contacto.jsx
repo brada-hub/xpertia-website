@@ -122,7 +122,7 @@ const Contacto = () => {
   };
 
   return (
-    <section id="contacto" className="py-24 bg-primary relative overflow-hidden">
+    <section id="contacto" className="py-24 bg-transparent relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full bg-pattern opacity-20 pointer-events-none" />
 

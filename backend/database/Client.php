@@ -124,8 +124,8 @@ class Client {
             ':address' => $data['address'] ?? null
         ];
         
-        $this->db->execute($sql, $params);
-        return $this->db->getConnection()->rowCount() > 0;
+        $stmt = $this->db->execute($sql, $params);
+        return $stmt->rowCount() > 0;
     }
     
     /**
@@ -141,7 +141,7 @@ class Client {
         }
         
         $sql = "DELETE FROM clients WHERE id = :id";
-        $this->db->execute($sql, [':id' => $id]);
-        return $this->db->getConnection()->rowCount() > 0;
+        $stmt = $this->db->execute($sql, [':id' => $id]);
+        return $stmt->rowCount() > 0;
     }
 }

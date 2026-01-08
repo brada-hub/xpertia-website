@@ -57,7 +57,7 @@ const Proceso = () => {
   };
 
   return (
-    <section id="proceso" className="py-24 bg-primary relative overflow-hidden" ref={ref}>
+    <section id="proceso" className="py-24 bg-transparent relative overflow-hidden" ref={ref}>
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-pattern opacity-20" />
       

@@ -62,7 +62,7 @@ const Pilares = () => {
   };
 
   return (
-    <section id="pilares" className="py-16 md:py-24 bg-primary relative overflow-hidden" ref={ref}>
+    <section id="pilares" className="py-16 md:py-24 bg-transparent relative overflow-hidden" ref={ref}>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
           className="text-center mb-12 md:mb-20 px-2"

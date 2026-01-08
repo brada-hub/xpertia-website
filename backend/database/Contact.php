@@ -117,8 +117,8 @@ class Contact {
      */
     public function updateStatus($id, $status) {
         $sql = "UPDATE contacts SET status = :status, updated_at = NOW() WHERE id = :id";
-        $this->db->execute($sql, [':status' => $status, ':id' => $id]);
-        return $this->db->getConnection()->rowCount() > 0;
+        $stmt = $this->db->execute($sql, [':status' => $status, ':id' => $id]);
+        return $stmt->rowCount() > 0;
     }
     
     /**
@@ -126,8 +126,8 @@ class Contact {
      */
     public function delete($id) {
         $sql = "DELETE FROM contacts WHERE id = :id";
-        $this->db->execute($sql, [':id' => $id]);
-        return $this->db->getConnection()->rowCount() > 0;
+        $stmt = $this->db->execute($sql, [':id' => $id]);
+        return $stmt->rowCount() > 0;
     }
     
     /**

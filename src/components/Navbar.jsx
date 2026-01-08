@@ -99,19 +99,7 @@ const Navbar = () => {
         : 'bg-transparent border-b border-transparent'
         }`}
     >
-      <div className="absolute top-0 left-0 w-full overflow-hidden h-16 pointer-events-none z-0">
-        <motion.div
-          className="absolute -left-[100px] top-0 will-change-transform"
-          animate={{ x: ['-100vw', '120vw'] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        >
-          <img
-            src="https://www.gifsanimados.org/data/media/359/santa-claus-y-papa-noel-imagen-animada-0420.gif"
-            alt="Santa Claus Caminando"
-            className="h-14 object-contain opacity-90 scale-x-[-1]"
-          />
-        </motion.div>
-      </div>
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}

@@ -63,8 +63,8 @@ class User {
      */
     public function deleteSession($token) {
         $sql = "DELETE FROM sessions WHERE token = :token";
-        $this->db->execute($sql, [':token' => $token]);
-        return $this->db->getConnection()->rowCount() > 0;
+        $stmt = $this->db->execute($sql, [':token' => $token]);
+        return $stmt->rowCount() > 0;
     }
     
     /**

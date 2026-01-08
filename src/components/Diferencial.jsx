@@ -14,7 +14,7 @@ const Diferencial = () => {
   ];
 
   return (
-    <section id="diferencial" className="py-24 bg-primary relative overflow-hidden" ref={ref}>
+    <section id="diferencial" className="py-24 bg-transparent relative overflow-hidden" ref={ref}>
       <div className="absolute inset-0 bg-pattern opacity-10" />
       <div className="max-w-5xl mx-auto px-6 relative z-10">
         <motion.div

@@ -3,7 +3,7 @@
  * Functions for interacting with projects, clients, and personnel APIs
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost/xpertia-website/backend/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost/xpertia-react/backend/api';
 
 async function apiRequest(endpoint, options = {}) {
     const url = `${API_BASE_URL}/${endpoint}`;

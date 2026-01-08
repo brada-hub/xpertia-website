@@ -42,9 +42,9 @@ CREATE TABLE IF NOT EXISTS sessions (
     INDEX idx_expires_at (expires_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Insert default admin user (password: 'password' - hashed with bcrypt)
-INSERT INTO users (name, email, password) VALUES 
-('Admin', 'admin@xpertia.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+-- Insert default admin user (password: '12345678')
+INSERT IGNORE INTO users (id, name, email, password) VALUES 
+(1, 'Admin', 'admin@xpertia.com', '$2y$10$vO/oJ3lXh.L6yK7f.6mSye7Z3xWv3.z05d9yF7Z8tG2y8v9u8m8k.');
 
 -- Insert sample contacts for testing
 INSERT INTO contacts (name, email, service, message, status) VALUES

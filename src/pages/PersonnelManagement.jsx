@@ -117,213 +117,236 @@ const PersonnelManagement = () => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-100 font-sans text-slate-900">
-            {/* Header */}
-            <div className="bg-white border-b border-slate-200 shadow-sm">
-                <div className="max-w-7xl mx-auto px-6 py-4">
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
-                                Gestión de <span className="text-blue-600">Personal</span>
-                            </h1>
-                            <p className="text-slate-500 text-sm mt-1">
-                                Bienvenido, {user?.name}
-                            </p>
-                        </div>
-                        <div className="flex items-center gap-4">
-                            <button
-                                onClick={() => navigate('/admin/dashboard')}
-                                className="px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all font-medium"
-                            >
-                                Contactos
-                            </button>
-                            <button
-                                onClick={() => navigate('/admin/projects')}
-                                className="px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all font-medium"
-                            >
-                                Proyectos
-                            </button>
-                            <button
-                                onClick={() => navigate('/admin/clients')}
-                                className="px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all font-medium"
-                            >
-                                Clientes
-                            </button>
-                            <button
-                                className="px-4 py-2 bg-slate-900 text-white rounded-lg cursor-default shadow-sm font-medium"
-                            >
-                                Personal
-                            </button>
-                            <button
-                                onClick={() => navigate('/')}
-                                className="px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all font-medium"
-                            >
-                                Ver Sitio Web
-                            </button>
-                            <button
-                                onClick={async () => {
-                                    await adminLogout();
-                                    navigate('/admin/login');
-                                }}
-                                className="px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors shadow-sm font-medium border border-red-100"
-                            >
-                                Cerrar Sesión
-                            </button>
-                        </div>
-                    </div>
+        <>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                <div>
+                    <h1 className="text-3xl font-bold text-white tracking-tight">
+                        Gestión de <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Personal</span>
+                    </h1>
+                    <p className="text-slate-400 mt-1">
+                        Administra tu capital humano y el equipo de especialistas.
+                    </p>
+                </div>
+                <button
+                    onClick={() => openModal()}
+                    className="flex items-center justify-center gap-2 px-6 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl transition-all font-semibold shadow-lg shadow-cyan-900/20 border border-cyan-400/20"
+                >
+                    + Nuevo Especialista
+                </button>
+            </div>
+
+            {error && (
+                <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
+                    <p className="text-red-400 font-medium flex items-center gap-2">
+                        <span>⚠️</span> {error}
+                    </p>
+                </div>
+            )}
+
+            <div className="bg-[#0f1026]/40 backdrop-blur-md p-6 rounded-2xl border border-white/5 shadow-xl mb-6">
+                <div className="relative max-w-md">
+                    <input
+                        type="text"
+                        placeholder="Buscar por nombre, cargo o email..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className="w-full pl-4 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 outline-none transition-all"
+                    />
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 py-8">
-                <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm mb-6 flex justify-between gap-4">
-                    <input
-                        type="text"
-                        placeholder="Buscar personal..."
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        className="px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none w-full max-w-md"
-                    />
-                    <button
-                        onClick={() => openModal()}
-                        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-sm"
-                    >
-                        + Nuevo Empleado
-                    </button>
-                </div>
-
-                <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                    {loading ? (
-                        <div className="p-12 text-center text-slate-500">Cargando...</div>
-                    ) : (
-                        <div className="overflow-x-auto">
-                            <table className="w-full">
-                                <thead className="bg-slate-50 border-b border-slate-200">
-                                    <tr>
-                                        <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Nombre</th>
-                                        <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Cargo</th>
-                                        <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Email</th>
-                                        <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Estado</th>
-                                        <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-slate-200">
-                                    {personnel.map((person) => (
-                                        <tr key={person.id} className="hover:bg-slate-50 transition-colors">
-                                            <td className="px-6 py-4 text-slate-900 font-medium">{person.name}</td>
-                                            <td className="px-6 py-4 text-slate-600">{person.position}</td>
-                                            <td className="px-6 py-4 text-slate-600">{person.email}</td>
-                                            <td className="px-6 py-4">
-                                                <span className={`px-2 py-1 rounded-full text-xs font-bold border ${person.status === 'active'
-                                                    ? 'bg-emerald-100 text-emerald-800 border-emerald-200'
-                                                    : 'bg-red-100 text-red-800 border-red-200'
-                                                    }`}>
-                                                    {person.status === 'active' ? 'Activo' : 'Inactivo'}
-                                                </span>
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                <div className="flex gap-2">
-                                                    <button
-                                                        onClick={() => openModal(person)}
-                                                        className="px-3 py-1 bg-emerald-600 text-white rounded hover:bg-emerald-700 transition-colors text-sm font-medium shadow-sm"
-                                                    >
-                                                        Editar
-                                                    </button>
-                                                    <button
-                                                        onClick={() => handleDelete(person.id)}
-                                                        className="px-3 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors text-sm font-medium border border-red-200"
-                                                    >
-                                                        Eliminar
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+            <div className="bg-[#0f1026]/40 backdrop-blur-md rounded-2xl border border-white/5 shadow-2xl overflow-hidden mb-8">
+                {loading ? (
+                    <div className="p-20 text-center">
+                        <div className="inline-block w-8 h-8 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin mb-4"></div>
+                        <p className="text-slate-400 font-medium">Cargando personal...</p>
+                    </div>
+                ) : personnel.length === 0 ? (
+                    <div className="p-20 text-center">
+                        <div className="text-4xl mb-4 opacity-20">👷‍♂️</div>
+                        <p className="text-slate-500 font-medium">No se encontró personal</p>
+                    </div>
+                ) : (
+                    <div className="overflow-x-auto">
+                        <table className="w-full">
+                            <thead>
+                                <tr className="bg-white/5 border-b border-white/5">
+                                    {['Especialista', 'Cargo', 'Email', 'Estado', 'Acciones'].map(h => (
+                                        <th key={h} className="px-6 py-4 text-left text-[10px] font-black text-slate-500 uppercase tracking-widest">{h}</th>
                                     ))}
-                                </tbody>
-                            </table>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-white/5">
+                                {personnel.map((person) => (
+                                    <tr key={person.id} className="hover:bg-white/[0.02] transition-colors group">
+                                        <td className="px-6 py-4">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-bold text-xs uppercase">
+                                                    {person.name.charAt(0)}
+                                                </div>
+                                                <p className="text-white font-semibold group-hover:text-cyan-400 transition-colors">{person.name}</p>
+                                            </div>
+                                        </td>
+                                        <td className="px-6 py-4 text-slate-300 text-sm font-medium">{person.position}</td>
+                                        <td className="px-6 py-4 text-cyan-400/80 text-sm font-medium">{person.email}</td>
+                                        <td className="px-6 py-4">
+                                            <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border ${person.status === 'active'
+                                                ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+                                                : 'bg-red-500/10 text-red-400 border-red-500/20'
+                                                }`}>
+                                                {person.status === 'active' ? 'Activo' : 'Inactivo'}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            <div className="flex items-center gap-2">
+                                                <button
+                                                    onClick={() => openModal(person)}
+                                                    className="p-2 bg-emerald-500/10 text-emerald-400 rounded-lg hover:bg-emerald-500 hover:text-white transition-all shadow-sm"
+                                                    title="Editar"
+                                                >
+                                                    📝
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDelete(person.id)}
+                                                    className="p-2 bg-red-500/10 text-red-500 rounded-lg hover:bg-red-500 hover:text-white transition-all shadow-sm"
+                                                    title="Eliminar"
+                                                >
+                                                    🗑️
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                    <div className="px-6 py-4 border-t border-white/5 flex items-center justify-between bg-white/[0.01]">
+                        <button
+                            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                            disabled={currentPage === 1}
+                            className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 text-slate-400 rounded-xl disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 hover:text-white transition-all font-semibold"
+                        >
+                            ← Anterior
+                        </button>
+                        <div className="flex items-center gap-2">
+                            <span className="text-slate-500 text-sm">Página</span>
+                            <span className="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-lg font-bold border border-cyan-500/20">{currentPage}</span>
+                            <span className="text-slate-500 text-sm">de {totalPages}</span>
                         </div>
-                    )}
-                </div>
+                        <button
+                            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                            disabled={currentPage === totalPages}
+                            className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 text-slate-400 rounded-xl disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 hover:text-white transition-all font-semibold"
+                        >
+                            Siguiente →
+                        </button>
+                    </div>
+                )}
             </div>
 
             {/* Modal */}
             <AnimatePresence>
                 {isModalOpen && (
-                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/75 backdrop-blur-sm">
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md" onClick={() => setIsModalOpen(false)}>
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.95 }}
-                            className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-6 border border-slate-200"
+                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                            className="bg-[#0f1026] rounded-3xl shadow-2xl w-full max-w-lg p-8 border border-white/10 relative overflow-hidden"
+                            onClick={(e) => e.stopPropagation()}
                         >
-                            <h2 className="text-xl font-bold text-slate-900 mb-6">
-                                {editingPersonnel ? 'Editar Empleado' : 'Nuevo Empleado'}
-                            </h2>
-                            <form onSubmit={handleSubmit} className="space-y-4">
+                            {/* Modal Background Glow */}
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 blur-[60px] rounded-full pointer-events-none"></div>
+
+                            <div className="flex items-start justify-between mb-8">
                                 <div>
-                                    <label className="text-sm font-medium text-slate-700">Nombre Completo *</label>
+                                    <h2 className="text-2xl font-bold text-white mb-1">
+                                        {editingPersonnel ? 'Editar Especialista' : 'Nuevo Especialista'}
+                                    </h2>
+                                    <p className="text-slate-500 text-xs uppercase font-black tracking-widest">Información del equipo de XpertIA</p>
+                                </div>
+                                <button
+                                    onClick={() => setIsModalOpen(false)}
+                                    className="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white transition-all"
+                                >
+                                    ✕
+                                </button>
+                            </div>
+
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                <div>
+                                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-2">Nombre Completo *</label>
                                     <input
                                         type="text"
                                         required
                                         value={formData.name}
                                         onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                        className="w-full px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none mt-1"
+                                        className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-600 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 outline-none transition-all"
+                                        placeholder="Ej: Ing. Carlos Ruiz"
                                     />
                                 </div>
                                 <div>
-                                    <label className="text-sm font-medium text-slate-700">Cargo *</label>
+                                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-2">Cargo / Especialidad *</label>
                                     <input
                                         type="text"
                                         required
                                         value={formData.position}
                                         onChange={e => setFormData({ ...formData, position: e.target.value })}
-                                        className="w-full px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none mt-1"
+                                        className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-600 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 outline-none transition-all"
+                                        placeholder="Ej: Senior AI Developer"
                                     />
                                 </div>
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
-                                        <label className="text-sm font-medium text-slate-700">Email *</label>
+                                        <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-2">Email Profesional *</label>
                                         <input
                                             type="email"
                                             required
                                             value={formData.email}
                                             onChange={e => setFormData({ ...formData, email: e.target.value })}
-                                            className="w-full px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none mt-1"
+                                            className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-600 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 outline-none transition-all text-sm"
+                                            placeholder="carlos@xpertia.com"
                                         />
                                     </div>
                                     <div>
-                                        <label className="text-sm font-medium text-slate-700">Teléfono</label>
+                                        <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-2">Teléfono de Contacto</label>
                                         <input
                                             type="text"
                                             value={formData.phone}
                                             onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                                            className="w-full px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none mt-1"
+                                            className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-600 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 outline-none transition-all text-sm"
+                                            placeholder="+1 234 567 890"
                                         />
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="text-sm font-medium text-slate-700">Estado</label>
+                                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-2">Estado Laboral</label>
                                     <select
                                         value={formData.status}
                                         onChange={e => setFormData({ ...formData, status: e.target.value })}
-                                        className="w-full px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none mt-1"
+                                        className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 outline-none transition-all appearance-none cursor-pointer"
                                     >
-                                        <option value="active">Activo</option>
-                                        <option value="inactive">Inactivo</option>
+                                        <option value="active" className="bg-[#0f1026]">Activo</option>
+                                        <option value="inactive" className="bg-[#0f1026]">Inactivo</option>
                                     </select>
                                 </div>
-                                <div className="flex justify-end gap-4 pt-4 border-t border-slate-100 mt-6">
+                                <div className="flex flex-col md:flex-row justify-end gap-4 pt-4 border-t border-white/5">
                                     <button
                                         type="button"
                                         onClick={() => setIsModalOpen(false)}
-                                        className="px-4 py-2 text-slate-600 hover:text-slate-900 transition-colors font-medium"
+                                        className="px-6 py-2.5 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all font-semibold"
                                     >
                                         Cancelar
                                     </button>
                                     <button
                                         type="submit"
-                                        className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-sm"
+                                        className="px-8 py-2.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-xl transition-all font-bold shadow-lg shadow-cyan-900/20"
                                     >
-                                        Guardar
+                                        {editingPersonnel ? 'Actualizar Miembro' : 'Añadir al Equipo'}
                                     </button>
                                 </div>
                             </form>
@@ -331,7 +354,7 @@ const PersonnelManagement = () => {
                     </div>
                 )}
             </AnimatePresence>
-        </div>
+        </>
     );
 };
 

@@ -74,7 +74,7 @@ const Equipo = () => {
   };
 
   return (
-    <section id="equipo" className="py-16 md:py-24 bg-primary relative overflow-hidden" ref={ref}>
+    <section id="equipo" className="py-16 md:py-24 bg-transparent relative overflow-hidden" ref={ref}>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
           className="text-center mb-10 md:mb-16 px-2"
